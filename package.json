@@ -1,0 +1,43 @@
+{
+  "name": "elegarden",
+  "version": "1.0.0",
+  "description": "Website development for a landscape design studio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnderKovalchuk/Elegarden.git"
+  },
+  "author": "Ander Kovalchuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnderKovalchuk/Elegarden/issues"
+  },
+  "homepage": "https://github.com/AnderKovalchuk/Elegarden#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "del": "^5.1.0",
+    "fibers": "^4.0.2",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-pug": "^4.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sort": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-util": "^3.0.8",
+    "gulp-w3c-html-validator": "^2.0.0",
+    "node-sass": "^4.13.1",
+    "vinyl-ftp": "^0.6.1"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}
