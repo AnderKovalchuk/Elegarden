@@ -102,3 +102,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+dev/
+build/
+deploy/
+
+gulp/deployTask/_connect.js
