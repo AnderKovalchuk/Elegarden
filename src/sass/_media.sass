@@ -1,0 +1,15 @@
+@mixin m-smDesktop()
+    @media screen and (max-width: $sm-desktop-width)
+        @content
+
+@mixin m-table()
+    @media screen and (max-width: $table-width)
+        @content
+
+@mixin m-phone()
+    @media screen and (max-width: $phone-width)
+        @content
+
+@mixin m-min-table()
+    @media screen and (min-width: $table-width)
+        @content
