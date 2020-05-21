@@ -1,0 +1,23 @@
+extends ../layouts/main
+
+block variables
+    - var title = 'Главная страница';
+    - var pageClass = 'home-page';
+    - var mainContentClass = 'home-page__main';
+
+block main-content
+    section.section.section--full-height.section--bg-image(style="background-image: url('img/home_bg.jpg')")
+        .container
+            .title
+                h2.title--like-h1.title--center ELEGARDEN
+    section.section
+        .container
+            .title
+                h2.title--like-h2 Наши услуги
+    section.section.section--full-height.section--bg-light
+        .container
+            .title
+                h2.title--like-h2.title--center ELEGARDEN
+    section.section.section--full-height
+        .container
+            h1 Hi
