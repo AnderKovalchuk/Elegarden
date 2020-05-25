@@ -1,0 +1,70 @@
+.footer
+    font-size: 1rem
+    +m-phone()
+        font-size: 0.8em
+    &__iner
+        position: relative
+        min-height: 70vh
+        display: flex
+        flex-direction: column
+        +m-phone()
+            min-height: auto
+    &__phone, &__add-info
+        position: absolute
+        right: 0
+    &__phone
+        +m-table()
+            display: none
+    &__add-info
+        bottom: 0
+        opacity: .5
+    &__title
+        display: flex
+        align-items: center
+        justify-content: center
+        margin: auto 0
+        .title
+            color: $addition-text-color
+        +m-phone()
+            margin: 2em 0
+    &__info--iner
+        position: relative
+        display: grid
+        grid-template-columns: 0.2fr 1fr 0.5fr
+        grid-template-rows: 100px
+        gap: 2em
+        +m-phone()
+            grid-template-columns: 1fr
+            grid-template-rows: 0 auto auto
+            margin: 2em 0
+            padding-left: 2em
+            gap: 1em
+
+    &__copyright
+        p
+            position: absolute
+            bottom: -1em
+            width: max-content
+            font-size: 0.9em
+            transform-origin: left top
+            transform: rotate(-90deg)
+            +m-phone()
+                left: 0
+    &__address
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        +m-phone()
+            p
+                margin-bottom: .5em
+    &__link
+        display: flex
+        +m-phone()
+            justify-content: space-between
+        a
+            display: block
+            margin-right: 1em
+            color: $main-color
+            text-decoration: none
+            &:hover
+                text-decoration: underline
