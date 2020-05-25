@@ -1,0 +1,76 @@
+.main-menu
+    position: fixed
+    top: 0 
+    bottom: 0
+    width: 100%
+    height: 100vh
+    visibility: hidden
+    opacity: 0
+    background-color: $dark-bg-color
+    transition: all 0.2s ease-out
+    &__iner
+        position: relative
+        display: flex
+        flex-direction: column
+        justify-content: center
+        height: 100vh
+        padding: 40px 0
+        +m-phone()
+            padding: 20px 0
+    &__menu-items
+        list-style: none
+        padding-left: 8vw
+        margin: auto 0
+        +m-phone()
+            padding-left: 0
+    &__menu-item
+        a
+            display: block
+            font-size: 3em
+            font-weight: 300
+            color: $light-text-color
+            text-transform: uppercase
+            text-decoration: none
+            padding: 20px 0
+            span
+                opacity: 0.5
+                transition: opacity 0.3s ease-out
+            &:hover
+                span
+                    opacity: 1
+            +m-desktop()
+                padding: 10px 0
+                font-size: 2.5em
+            +m-table()
+                font-size: 2em
+            +m-phone()
+                font-size: 1.5em
+
+    &__mail, &__address 
+        position: absolute
+        bottom: 40px
+        opacity: 0.3
+        font-weight: 300
+        line-height: 1em
+        +m-phone()
+            line-height: 1.2em
+            position: relative
+            bottom: 0
+    &__mail
+        left: 1em
+        transform-origin: left bottom
+        transform: rotate(-90deg)
+        +m-phone()
+            left: 0
+            transform: rotate(0deg)
+    &__address 
+        right: 0
+    .header__top
+        position: absolute
+        top: 0
+    &--active
+        visibility: visible
+        opacity: 1
+    &--top-pozition
+        .header__top
+            display: none
