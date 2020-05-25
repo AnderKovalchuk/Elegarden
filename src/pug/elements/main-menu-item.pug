@@ -1,0 +1,3 @@
+mixin main-menu-item(text, textSecond="", link="#")
+    li.main-menu__menu-item(class!=attributes.class)
+        a(href= link) #{text} #[span= textSecond] 
