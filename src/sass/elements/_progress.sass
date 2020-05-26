@@ -1,0 +1,25 @@
+.progress
+    display: flex
+    align-items: center
+    &__bar
+        width: 100px
+        height: 2px
+        background-color: rgba($main-color, 0.5)
+        margin: 0 1em
+        &::after
+            content: ''
+            display: block
+            height: 2px
+            width: 20%
+            background-color: $main-color
+            opacity: 1
+        +m-smDesktop()
+            width: 70px
+    &--light
+        .progress
+            &__num
+                color: $light-text-color
+            &__bar
+                background-color: rgba($light-text-color, 0.5)
+                &::after
+                    background-color: $light-text-color
