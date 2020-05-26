@@ -1,0 +1,19 @@
+block variables
+include ../common/header
+
+doctype html
+html(lang='ru')
+    head
+        include ../common/head
+
+    body(class=pageClass)
+        +header(true)
+        block before-main-content
+
+        main(class=mainContentClass)
+            block main-content
+        
+        block after-main-content
+
+        include ../common/footer
+        include ../common/script

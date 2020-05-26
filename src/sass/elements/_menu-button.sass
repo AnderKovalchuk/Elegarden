@@ -6,8 +6,9 @@
         font-size: 0.8em
         text-transform: uppercase
         text-decoration: none
-        color: #fff
+        color: $main-color 
         cursor: pointer
+        transition: all 1s ease-out
         +m-table()
             width: 60px
         +m-phone()
@@ -18,9 +19,8 @@
             display: block
             width: 100%
             height: 2px
-            background-color: #fff
+            background-color: $main-color 
             transition: all 1s ease-out
-            
         &::after
             margin-top: 10px
     &__text
@@ -35,3 +35,8 @@
             transform: rotate(0deg)
         +m-phone()
             display: none
+    &--light
+        color: $light-text-color
+        .menu-button__menu-line
+            &::before, &::after
+                background-color: $light-text-color
