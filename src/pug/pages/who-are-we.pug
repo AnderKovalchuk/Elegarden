@@ -2,11 +2,12 @@ extends ../layouts/main
 
 include ../includes/section
 include ../elements/angle-line
+include ../elements/angle-link
 
 block variables
-    - var title = 'Главная страница';
-    - var pageClass = 'home-page';
-    - var mainContentClass = 'home-page__main';
+    - var title = 'Кто мы';
+    - var pageClass = 'who-page';
+    - var mainContentClass = 'who__main';
 
 block main-content
     +section--full-height('01', '', 'img/bg_1.jpg')
@@ -19,7 +20,7 @@ block main-content
                 p.content__accent-strong
                     strong  Elegarden выполняет работы по ландшафтному дизайну, ландшафтному проектированию, ландшафтному строительству, благоустройству, озеленению, уходу за садом, обслуживаю сада 
                 p Ландшафтная компания Elegarden создана для того, чтобы идея Вашего сада стала реальностью. Идею сада и озеленения создают заранее, до наступления весеннего тепла - обсуждают детали, формируют пожелания, наблюдать за тем, как мечта о саде обретает чёткие очертания.
-                a.content__action(href="#") Узнать больше о нас #[i]
+                +angle-link('Узнать больше о нас ', '/who-are-we.html', '+')
     +section--full-height('02')
         .container.content.content--mob-wrap
             .content__addition-block.number
@@ -30,7 +31,7 @@ block main-content
                 p.content__accent-strong
                     strong  Внимательны к созданию эстетике вокруг дома, созданию приятной атмосферы, функциональному использованию каждого сантиметра земли
                 p При создании ландшафтного дизайна используем материалы высокого качества. Высадим эффектные и здоровые растения из зарекомендовавших себя питомников Европы и России. Замостим витиеватым узором мощения дорожки сада. Создадим английские газоны. Установим элегантную садовую мебель. Запустим японских зеркальных карпов в водоём. Позаботимся о художественной выразительности сада, сохраним природу. Работаем согласно технологиям озеленения, ландшафтного строительства.
-                a.content__action(href="#") Узнать больше о нас #[i]
+                +angle-link('Узнать больше о нас ', '/who-are-we.html')
     +section--full-height('03', '', 'img/bg_2.jpg')
         .container.content.content--no-right
             .grid-info__iner

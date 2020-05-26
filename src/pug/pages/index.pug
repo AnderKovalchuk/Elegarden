@@ -2,6 +2,9 @@ extends ../layouts/main
 
 include ../includes/section
 include ../elements/angle-line
+include ../elements/angle-link
+include ../elements/progress
+include ../elements/angle-nav
 
 block variables
     - var title = 'Главная страница';
@@ -28,7 +31,7 @@ block main-content
                 p.content__accent-strong
                     strong  Elegarden выполняет работы по ландшафтному дизайну, ландшафтному проектированию, ландшафтному строительству, благоустройству, озеленению, уходу за садом, обслуживаю сада 
                 p Ландшафтная компания Elegarden создана для того, чтобы идея Вашего сада стала реальностью. Идею сада и озеленения создают заранее, до наступления весеннего тепла - обсуждают детали, формируют пожелания, наблюдать за тем, как мечта о саде обретает чёткие очертания.
-                a.content__action(href="#") Узнать больше о нас #[i]
+                +angle-link('Узнать больше о нас ', '/who-are-we.html')
     .section.section--full-height.section--bg-light.section--no-padding
         .portfolio__iner
             .portfolio__categories-iner
@@ -47,19 +50,11 @@ block main-content
             .portfolio__description
                 p Площадь: #[span 16 соток]
                 p Город: #[span Москвовская область]
-                a(href="#") Смотреть проект 
-                    +angle-line--left()
+                +angle-link('Смотреть проект ', '/project.html')
+
             .portfolio__nav-iner
-                .portfolio__progres
-                    span.start 01
-                    .progres
-                    span.end 06
-                .portfolio__nav
-                    a(href="#")
-                        +angle-line--right()
-                    span 01 / 06
-                    a(href="#")
-                        +angle-line--left()
+                +progress('01', '06')
+                +angle-nav('01', '06')
             .portfolio__image
                 figure
                     img(src="img/portfolio_img_1.jpg" alt="")

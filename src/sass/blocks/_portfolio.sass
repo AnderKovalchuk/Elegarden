@@ -97,38 +97,40 @@
             justify-content: flex-end
             padding: 0 
             margin-bottom: -4px
+            .progress
+                display: none
         +m-phone()
             justify-content: center
-    &__nav
-        a
-            display: inline-flex
-            align-items: flex-end
-            height: 1em
-            margin: 0 0.5em
-        span
-            display: none
-            margin: 0 0.5em
-            +m-table()
-                display: inline-block
-    &__progres
-        display: flex
-        align-items: flex-end
-        +m-table()
-            display: none
-        span
-            margin-bottom: 0.5em
-        .progres
-            height: 2px
-            width: 100px
-            flex-shrink: 0
-            margin: auto 1.5em 4px 1.5em
-            background-color: rgba($main-color, 0.5)
-            &::after
-                display: block
-                content: ''
-                height: 2px
-                width: 30%
-                background-color: $main-color
+    // &__nav
+    //     a
+    //         display: inline-flex
+    //         align-items: flex-end
+    //         height: 1em
+    //         margin: 0 0.5em
+    //     span
+    //         display: none
+    //         margin: 0 0.5em
+    //         +m-table()
+    //             display: inline-block
+    // &__progres
+    //     display: flex
+    //     align-items: flex-end
+    //     +m-table()
+    //         display: none
+    //     span
+    //         margin-bottom: 0.5em
+    //     .progres
+    //         height: 2px
+    //         width: 100px
+    //         flex-shrink: 0
+    //         margin: auto 1.5em 4px 1.5em
+    //         background-color: rgba($main-color, 0.5)
+    //         &::after
+    //             display: block
+    //             content: ''
+    //             height: 2px
+    //             width: 30%
+    //             background-color: $main-color
 
     &__image
         grid-area: image
