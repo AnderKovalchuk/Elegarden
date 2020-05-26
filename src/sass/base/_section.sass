@@ -2,11 +2,14 @@
     position: relative
     padding: 3em 0
     font-size: 1rem
+    +m-phone()
+        padding: 3em 0 5em 0
     &--full-height
         display: flex
         align-items: center
         min-height: 100vh
-
+    &--no-padding
+        padding: 0
     &--bg-image
         background-size: cover
         background-position: center
@@ -19,3 +22,19 @@
         font-weight: 300
         font-size: 5em
         text-transform: uppercase
+    &__nav-iner
+        position: absolute
+        left: $d-calc-container-pozition
+        bottom: 3em
+        display: flex
+        cursor: pointer
+        &--light
+            color: $light-text-color
+            .angle-line, .angle-line::after
+                background-color: $light-text-color
+        +m-table()  
+            left: $t-calc-container-pozition
+        +m-phone()
+            bottom: 1em
+    &__nav-number
+        margin-right: 0.5em
