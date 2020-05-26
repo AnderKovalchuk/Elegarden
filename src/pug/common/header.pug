@@ -1,12 +1,23 @@
 include ../elements/menu-button
 //- .header__menu-button--active-page-scroll
-mixin header()
-    header.header
-        .container
-            .header__top
-                .header__menu-button
-                    +menu-button
-                .header__logo
-                .header__contact
-                    p +7 (922) 246 66 55
-        include main-menu
+mixin header(isDark= false)
+    if isDark
+        header.header.header--dark
+            .container
+                .header__top
+                    .header__menu-button
+                        +menu-button
+                    .header__logo
+                    .header__contact
+                        p +7 (922) 246 66 55
+            include main-menu
+    else
+        header.header
+            .container
+                .header__top
+                    .header__menu-button
+                        +menu-button
+                    .header__logo
+                    .header__contact
+                        p +7 (922) 246 66 55
+            include main-menu
