@@ -1,12 +1,23 @@
 extends ../layouts/main
 
+include ../includes/section
+
 block variables
     - var title = 'Главная страница';
     - var pageClass = 'home-page';
     - var mainContentClass = 'home-page__main';
 
 block main-content
-    section.section.section--full-height.section--bg-image(style="background-image: url('img/home_bg.jpg')")
+    +section--full-height('01', '', 'img/home_bg.jpg')
+        h2 text
+        
+    +section--full-height('02')
+        h2 text
+        i.angle-line.angle-line--right
+        i.angle-line.angle-line--left
+        i text 
+        i.angle-line.angle-line--top
+    +section--full-height('03', '', 'img/home_bg.jpg')
         .container
             .title
                 h2.title--like-h1.title--center ELEGARDEN
@@ -14,10 +25,21 @@ block main-content
         .container
             .title
                 h2.title--like-h2 Наши услуги
-    section.section.section--full-height.section--bg-light
+    +section--full-height('03', '+')
         .container
             .title
                 h2.title--like-h2.title--center ELEGARDEN
-    section.section.section--full-height
+    +section--full-height('04')
         .container
             h1 Hi
+
+    .section.section--bg-light
+        .container.content
+            .content__addition-block(style="background: #862147")
+                p .content__addition-block
+            .content__iner(style="background: #a24578")
+                p .content__iner
+    .section.section--full-height.section--no-padding
+        .container.content.content--full-height.content--no-right
+            .content__iner(style="background: #a24578")
+                p .content__iner

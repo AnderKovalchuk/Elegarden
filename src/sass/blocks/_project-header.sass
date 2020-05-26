@@ -1,0 +1,26 @@
+.project-header
+    &__iner
+        position: relative
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-self: stretch
+        .title__iner
+            width: 60%
+            padding-left: $d-menu-width
+            +m-table()
+                width: 90%
+                padding: 0
+    &__nav-iner
+        position: absolute
+        width: 100%
+        bottom: 0
+        display: flex
+        justify-content: center
+        padding-left: $d-menu-width
+        +m-table()
+            padding: 0
+        .progress
+            margin: 0 auto
+            +m-table()
+                display: none

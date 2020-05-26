@@ -1,0 +1,46 @@
+
+.angle-line
+    display: block
+    position: relative
+    background: $main-color
+    width: 50px
+    height: 2px
+    &::after
+        position: absolute
+        display: block
+        content: ''
+        width: 3px
+        height: 5px  
+        background: $main-color
+    &--left
+        &::after
+            right: 0
+            bottom: 0
+            transform: skew(50deg)
+    &--right
+        &::after
+            left: 0
+            bottom: 0
+            transform: skew(-50deg)
+    &--top
+        width: 2px
+        height: 50px
+        &::after
+            width: 5px
+            height: 3px 
+            top: 0
+            left: 0
+            transform: skew(0, 50deg)
+    &--bottom
+        width: 2px
+        height: 50px
+        &::after
+            width: 5px
+            height: 3px 
+            bottom: 0
+            left: 0
+            transform: skew(0, -50deg)
+    &--light
+        background-color: $light-text-color
+        &::after
+            background-color: $light-text-color

@@ -1,0 +1,50 @@
+.projects
+    &__iner
+        display: grid
+        grid-template-columns: 1fr 1fr
+        gap: 2em
+        +m-phone()
+            grid-template-columns: 1fr
+    &__item
+        position: relative
+        height: 40vh
+        max-height: 400px
+        padding: 3em
+        background-color: $light-text-color
+        +m-table()
+            height: 30vh
+            padding: 2em
+            max-height: 300px
+        a
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            height: 100%
+            text-decoration: none
+        .angle-link
+            z-index: 5
+        &:hover
+            .angle-link
+                opacity: 1
+        &--dark
+            .projects__title
+                color: $main-color
+    &__title
+        position: relative
+        z-index: 5
+        font-size: 2em
+        font-weight: 300
+        color: $light-text-color
+        text-transform: uppercase
+    &__img
+        position: absolute
+        left: 0
+        top: 0
+        right: 0
+        bottom: 0
+        font-size: 0
+        img
+            height: 100%
+            width: 100%
+            object-fit: cover
+    
