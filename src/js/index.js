@@ -1,7 +1,7 @@
 
 window.addEventListener('load', () => {
     menuToggle();
-    let pageScroll = new PageScroll();
+    //let pageScroll = new PageScroll();
 });
 
 function menuToggle(){
