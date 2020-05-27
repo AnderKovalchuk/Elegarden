@@ -1,0 +1,16 @@
+extends ../layouts/dark-menu
+
+include ../includes/section
+include ../elements/angle-line
+include ../elements/angle-link
+include ../elements/progress
+include ../elements/angle-nav
+
+block variables
+    - var title = 'Главная страница';
+    - var pageClass = 'home-page';
+    - var mainContentClass = 'home-page__main';
+
+block main-content
+    +section--full-height('01', '', 'img/map.jpg')
+        h1 .

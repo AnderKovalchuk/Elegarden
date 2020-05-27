@@ -1,0 +1,22 @@
+.article
+    &__info
+        display: flex
+        p
+            margin-right: 3em
+    &__content
+        img
+            display: block
+            margin: 3em 0
+            max-width: 100%
+            +m-phone()
+                margin: 2em 0
+        p, h2, h3 
+            width: 60%
+            margin-left: 10%
+            +m-table()
+                width: 80%
+            +m-phone()
+                width: 100%
+                margin-left: 0
+        h2, h3
+            margin-bottom: 1em
