@@ -1,15 +1,15 @@
 include ../elements/angle-link
 
-mixin project-item(title, image= '')
+mixin project-item(title, image= '', link= '#')
     if image
         .projects__item
-            a(href="/project.html")
+            a(href= link)
                 figure.projects__img
                     img(src= image alt= title)
                 h3.projects__title= title
                 +angle-link--text('Подробнее', '/project.html', '+')
     else
         .projects__item.projects__item--dark
-            a(href="/project.html")
+            a(href= link)
                 h3.projects__title= title
                 +angle-link--text('Подробнее', '/project.html')
