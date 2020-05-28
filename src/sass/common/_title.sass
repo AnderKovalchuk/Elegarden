@@ -1,27 +1,47 @@
 .title
     font-family: $main-font
     font-weight: 300
-    font-size: 1rem
+    font-size: 2rem
     text-transform: uppercase
     &__iner
         &--center
             text-align: center
     &--like-h1
-        font-size: 7.5em
+        font-size: 4em
         font-weight: 300
-        +m-desktop()
-            font-size: 6em
-        +m-table()
-            font-size: 5em
-        +m-phone()
-            font-size: 3em
+        +l-digDesktop(font-size, 3.5em)
+        +l-desktop(font-size, 3em)
+        +l-table(font-size, 2.5em)
+        +l-phone(font-size, 1.5em)
     &--like-h2
-        font-size: 5em
+        font-size: 4em
         font-weight: 300
-        +m-desktop()
-            font-size: 4.5em
-        +m-table()
-            font-size: 4em
-        +m-phone()
-            font-size: 2.5em
+        +l-digDesktop(font-size, 3.5em)
+        +l-desktop(font-size, 3em)
+        +l-table(font-size, 2em)
+        +l-phone(font-size, 1em)
+
+    &--like-h3
+        font-size: 3em
+        font-weight: 300
+        +l-digDesktop(font-size, 2.5em)
+        +l-desktop(font-size, 2em)
+        +l-table(font-size, 2em)
+        +l-phone(font-size, 1em)
+
+    &__sub-title
+        font-size: 0.75em
+        font-weight: normal
+        text-transform: none
+        +l-digDesktop(font-size, 0.65em)
+        +l-desktop(font-size, 0.5em)
+    // &--like-h2
+    //     font-size: 5em
+    //     font-weight: 300
+    //     +m-desktop()
+    //         font-size: 4.5em
+    //     +m-table()
+    //         font-size: 4em
+    //     +m-phone()
+    //         font-size: 2.5em
     
