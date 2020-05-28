@@ -1,12 +1,8 @@
-include ../elements/menu-button
 include ../elements/main-menu-item
 
 .main-menu
     .container.main-menu__iner
-        .header__top
-            .header__logo
-            .header__contact
-                p +7 (922) 246 66 55
+        +header-top(false)
         ul.main-menu__menu-items
             +main-menu-item('Главная', '', '/').active
             +main-menu-item('КТО', 'МЫ ТАКИЕ', 'who-are-we.html')
