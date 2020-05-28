@@ -1,0 +1,52 @@
+.comments
+    &__header
+        display: flex
+        justify-content: space-between
+        flex-wrap: wrap
+        padding: 2em 0 1em 0
+    &__title
+        font-size: 1.2em
+        opacity: 0.5
+        font-weight: normal
+    &__share
+        display: flex
+        align-items: center
+        p
+            opacity: 0.5
+            margin-bottom: 0 !important
+        a
+            margin-left: 1em
+            color: $main-color
+            text-decoration: none
+            &:hover
+                text-decoration: underline
+
+    &__row
+        display: grid
+        grid-template-columns: 150px 1fr
+        gap: 30px
+        margin-bottom: 30px
+        +m-phone()
+            grid-template-columns: 1fr
+            gap: 0
+    &__details
+        font-size: 0.9rem
+        +m-phone()
+            display: flex
+            justify-content: space-between
+    &__person
+        margin-bottom: 0 !important
+        font-weight: bold
+    &__text
+        border-bottom: 1px solid $border-color 
+        p
+            margin-bottom: 0.5em !important
+
+    &__form
+        input, textarea
+            padding: 5px
+            font-weight: 300
+            border: none
+            border-bottom: 1px solid $main-color
+            outline: none
+            resize: none
