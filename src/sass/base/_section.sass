@@ -28,11 +28,17 @@
         bottom: 3em
         display: flex
         cursor: pointer
+        color: $main-color
+        text-decoration: none
+        transition: all 1s ease-out
         &--light
             color: $light-text-color
             .angle-line, .angle-line::after
                 background-color: $light-text-color
-        +m-table()  
+        &--hidden
+            visibility: hidden
+            opacity: 0
+        +m-desktop()  
             left: $t-calc-container-pozition
         +m-phone()
             bottom: 1em

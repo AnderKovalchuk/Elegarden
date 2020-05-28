@@ -5,6 +5,7 @@ include ../elements/angle-line
 include ../elements/angle-link
 include ../elements/progress
 include ../elements/angle-nav
+include ../elements/section-nav-iner
 
 block variables
     - var title = 'Главная страница';
@@ -58,6 +59,4 @@ block main-content
             .portfolio__image
                 figure
                     img(src="img/portfolio_img_1.jpg" alt="")
-        .section__nav-iner
-            span.section__nav-number 03
-            +angle-line--bottom()
+        +section-nav-iner('03')
