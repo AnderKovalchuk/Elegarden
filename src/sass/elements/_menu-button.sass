@@ -1,0 +1,42 @@
+.menu-button
+    &__iner
+        position: relative
+        display: block
+        width: 60px
+        font-size: 0.8em
+        text-transform: uppercase
+        text-decoration: none
+        color: $main-color 
+        cursor: pointer
+        transition: all 1s ease-out
+        +m-table()
+            width: 60px
+        +m-phone()
+            width: 50px
+    &__menu-line
+        &::before, &::after
+            content: ''
+            display: block
+            width: 100%
+            height: 2px
+            background-color: $main-color 
+            transition: all 1s ease-out
+        &::after
+            margin-top: 10px
+    &__text
+        position: absolute
+        right: calc( 100% - 1em)
+        display: block
+        transform-origin: right bottom
+        transform: rotate(-90deg)
+        +m-table()
+            left: 0
+            margin-top: 5px
+            transform: rotate(0deg)
+        +m-phone()
+            display: none
+    &--light
+        color: $light-text-color
+        .menu-button__menu-line
+            &::before, &::after
+                background-color: $light-text-color

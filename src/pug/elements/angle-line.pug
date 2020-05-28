@@ -1,0 +1,20 @@
+mixin angle-line--left(isLight= false)
+    if isLight  
+        i.angle-line.angle-line--left.angle-line--light
+    else
+        i.angle-line.angle-line--left
+
+mixin angle-line--right(isLight= false)
+    if isLight
+        i.angle-line.angle-line--right.angle-line--light
+    else
+        i.angle-line.angle-line--right
+        
+mixin angle-line--bottom(isLight= false)
+    if isLight 
+        i.angle-line.angle-line--bottom.angle-line--light
+    else
+        i.angle-line.angle-line--bottom
+
+mixin angle-line--top()
+    i.angle-line.angle-line--top

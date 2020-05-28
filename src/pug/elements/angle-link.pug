@@ -1,0 +1,25 @@
+include angle-line
+
+mixin angle-link(text, link= '#', isLight= false)
+    if isLight
+        .angle-link.angle-link--light
+            a(href= link)
+                span= text 
+                +angle-line--left()
+    else
+        .angle-link
+            a(href= link)
+                span= text 
+                +angle-line--left()
+
+mixin angle-link--text(text, link= '#', isLight= false)
+    if isLight
+        .angle-link.angle-link--light
+            p
+                span= text 
+                +angle-line--left()
+    else
+        .angle-link
+            p
+                span= text 
+                +angle-line--left()

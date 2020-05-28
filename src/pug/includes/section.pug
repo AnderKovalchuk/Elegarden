@@ -1,0 +1,47 @@
+include ../elements/angle-line
+include ../elements/section-nav-iner
+
+mixin section(number = '', bg = false, imgSrc = '')
+    if imgSrc
+        - var sectionClass = 'section section--bg-image'
+        - var sectionImage = 'background-image: url(\'' +  imgSrc + '\')'
+    else
+        - var sectionClass = 'section'
+    
+    if bg
+        - var sectionClass = sectionClass + ' section--bg-light'
+    
+    section(class= sectionClass style = sectionImage)
+        block
+        if number
+            +section-nav-iner(number, imgSrc)
+            //- if imgSrc
+            //-     a(href="#").section__nav-iner.section__nav-iner--light
+            //-         span.section__nav-number= number
+            //-         +angle-line--bottom()
+            //- else 
+            //-     a(href="#").section__nav-iner
+            //-         span.section__nav-number= number
+            //-         +angle-line--bottom()
+
+mixin section--full-height(number = '', bg = false, imgSrc = '')
+    if imgSrc
+        - var sectionClass = 'section section--full-height section--bg-image'
+        - var sectionImage = 'background-image: url(\'' +  imgSrc + '\')'
+    else
+        - var sectionClass = 'section section--full-height'
+    if bg
+        - var sectionClass = sectionClass + ' section--bg-light'
+    
+    section(class= sectionClass style = sectionImage)
+        block
+        if number
+            +section-nav-iner(number, imgSrc)
+            //- if imgSrc
+            //-     a(href="#").section__nav-iner.section__nav-iner--light
+            //-         span.section__nav-number= number
+            //-         +angle-line--bottom()
+            //- else 
+            //-     a(href="#").section__nav-iner
+            //-         span.section__nav-number= number
+            //-         +angle-line--bottom()

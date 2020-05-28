@@ -1,0 +1,29 @@
+extends ../layouts/dark-menu
+
+include ../includes/section
+include ../elements/blog-item
+include ../elements/angle-link
+
+block variables
+    - var title = 'Блог';
+    - var pageClass = 'blog-page';
+    - var mainContentClass = 'blog__main';
+
+
+block main-content
+    +section('01')
+        .container.container--header.content.content--no-right
+            .content__iner
+                .content__title.title__iner
+                    h2.title.title--like-h1 НАШ БЛОГ
+
+                .blog__iner
+                    +blog-item('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_1.jpg')
+                    +blog-item--small('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_2.jpg')
+                    +blog-item--small('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_3.jpg')
+                    +blog-item('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_1.jpg')
+                    +blog-item--big('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_4.jpg')
+                    +blog-item('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_2.jpg')
+                    +blog-item('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_1.jpg')
+                .blog__nav
+                    +angle-link('Смотреть больше')
