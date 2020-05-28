@@ -1,0 +1,9 @@
+include angle-line
+
+mixin angle-nav(start, end, isLight= '')
+    .angle-nav
+        a(href="#")
+            +angle-line--right(isLight)
+        span 01 / 06
+        a(href="#")
+            +angle-line--left(isLight)

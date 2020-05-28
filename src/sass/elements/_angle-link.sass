@@ -1,0 +1,22 @@
+.angle-link
+    opacity: .7
+    transition: all 0.5s ease-out
+    &:hover
+        opacity: 1
+    a, p
+        display: flex
+        align-items: flex-end
+        font-weight: bold
+        color: $main-color
+        text-decoration: none
+    p 
+        line-height: 1em
+        margin-bottom: 0
+    .angle-line
+        margin-left: 10px
+        margin-bottom: 4px
+    &--light
+        a, p
+            color: $light-text-color
+        .angle-line, .angle-line::after
+            background-color: $light-text-color

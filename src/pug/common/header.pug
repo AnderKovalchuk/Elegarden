@@ -1,4 +1,5 @@
 include ../elements/menu-button
+include page-scroll
 //- .header__menu-button--active-page-scroll
 mixin header(isDark= false)
     if isDark
@@ -21,3 +22,4 @@ mixin header(isDark= false)
                     .header__contact
                         p +7 (922) 246 66 55
             include main-menu
+    +page-scroll()

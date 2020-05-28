@@ -1,0 +1,25 @@
+extends ../layouts/dark-menu
+
+include ../includes/section
+include ../elements/project-item
+
+block variables
+    - var title = 'Что уже сделали';
+    - var pageClass = 'projects-page';
+    - var mainContentClass = 'projects__main';
+
+
+block main-content
+    +section('01', '+')
+        .container.container--header.content.content--no-right
+            .content__iner
+                .content__title.title__iner
+                    h2.title.title--like-h1 Наши проекты
+
+                .projects__iner
+                    +project-item('Вешки', 'img/proj_img_1.jpg', '/project.html')
+                    +project-item('Заречье')
+                    +project-item('захарово')
+                    +project-item('золотой')
+                    +project-item('мурманск')
+                    +project-item('оскол')

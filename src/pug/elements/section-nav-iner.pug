@@ -12,11 +12,3 @@ mixin section-nav-iner(number, isLight= '', link="#", isTop= '')
             +angle-line--top()
         else
             +angle-line--bottom()
-
-mixin section-nav-iner(number, link="#", isTop= '')
-    a.section__nav-iner(href= link)
-        span.section__nav-number= number
-        if isTop
-            +angle-line--top()
-        else
-            +angle-line--bottom()
