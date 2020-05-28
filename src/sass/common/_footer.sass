@@ -4,9 +4,11 @@
         font-size: 0.8em
     &__iner
         position: relative
-        min-height: 70vh
+        min-height: 700px
         display: flex
         flex-direction: column
+        +m-desktop()
+            min-height: 70vh
         +m-phone()
             min-height: auto
     &__phone, &__add-info

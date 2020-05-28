@@ -4,16 +4,20 @@
     box-sizing: border-box
 
 html
-	font-size: 16px
+	//font-size: 16px
 	scroll-behavior: smooth
+	+m-desktop()
+		font-size: 16px
 
 body
 	position: relative
 	min-width: 320px
-	font-size: 16px
+	//font-size: 16px
 	color: $main-color
 	font-family: $main-font
 	overflow-x: hidden
+	+m-desktop()
+		font-size: 16px
 
 \::-webkit-scrollbar-track
     background-color: transparent

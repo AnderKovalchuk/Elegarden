@@ -6,10 +6,12 @@ mixin header-top(isMain= true)
             .header__menu-button
                 +menu-button
         .header__logo.header__logo--light
-            figure
-                img(src="img/logo_light.png" alt="Logo Elegarden")
+            a(href="/")
+                figure
+                    img(src="img/logo_light.png" alt="Logo Elegarden")
         .header__logo.header__logo--dark
-            figure
-                img(src="img/logo_dark.png" alt="Logo Elegarden")
+            a(href="/")
+                figure
+                    img(src="img/logo_dark.png" alt="Logo Elegarden")
         .header__contact
             p +7 (922) 246 66 55

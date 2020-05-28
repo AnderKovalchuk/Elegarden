@@ -9,7 +9,9 @@
     &--full-height
         display: flex
         align-items: center
-        min-height: 100vh
+        min-height: 1000px
+        +m-desktop()
+            min-height: 100vh
     &--no-padding
         padding: 0
     &--bg-image
@@ -18,7 +20,8 @@
         color: $light-text-color
     &--bg-light
         background-color: $light-bg-color
-
+    &--header
+        height: 100vh
     &__title
         font-family: $main-font
         font-weight: 300

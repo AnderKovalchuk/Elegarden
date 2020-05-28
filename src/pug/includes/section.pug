@@ -26,7 +26,7 @@ mixin section(number = '', bg = false, imgSrc = '')
 
 mixin section--full-height(number = '', bg = false, imgSrc = '')
     if imgSrc
-        - var sectionClass = 'section section--full-height section--bg-image'
+        - var sectionClass = 'section section--full-height section--bg-image ' + attributes.class
         - var sectionImage = 'background-image: url(\'' +  imgSrc + '\')'
     else
         - var sectionClass = 'section section--full-height'

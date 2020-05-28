@@ -1,14 +1,17 @@
 .portfolio
     &__iner
         align-self: stretch
-        height: 100vh
+        height: 1000px
         width: 100%
         display: grid
-        grid-template-columns: $d-menu-width 1fr 50%
+        grid-template-columns: $d-menu-width 1fr 65%
         grid-template-rows: 1fr 0.8fr 100px
         grid-template-areas: '. title image' 'categories description image' '. nav image'
         gap: 1em
         margin-left: $d-calc-container-pozition
+        +m-desktop()
+            height: 100%
+            grid-template-columns: $d-menu-width 1fr 50%
         +m-desktop()
             margin-left: $t-calc-container-pozition
         +m-table()
