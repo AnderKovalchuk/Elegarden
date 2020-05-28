@@ -7,12 +7,15 @@
         img
             display: block
             margin: 3em 0
+            width: 100%
             max-width: 100%
             +m-phone()
                 margin: 2em 0
         p, h2, h3 
-            width: 60%
+            width: 50%
             margin-left: 10%
+            +m-desktop()
+                width: 60%
             +m-table()
                 width: 80%
             +m-phone()

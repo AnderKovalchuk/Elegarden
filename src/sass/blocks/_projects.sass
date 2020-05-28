@@ -3,8 +3,11 @@
         display: grid
         grid-template-columns: 1fr 1fr
         gap: 2em
+        +m-table()
+            margin-bottom: 70px
         +m-phone()
             grid-template-columns: 1fr
+            margin-bottom: 0
     &__item
         position: relative
         height: 40vh
