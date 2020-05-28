@@ -1,26 +1,25 @@
 .content
     display: flex
-    padding-left: 9vw
-    padding-right: 9vw
-    +m-table()
-        padding-left: 0
-        padding-right: 0
+    width: 80%
+    margin: 0 auto
+    +l-digDesktop(width, auto)
     &--mob-wrap
-        +m-phone()
-            flex-wrap: wrap
+        +l-phone(flex-wrap, wrap)
+
     &--no-right
         padding-right: 0
     &--full-height
         align-self: stretch
     &__title
-        margin-bottom: 2em
+        margin-bottom: 1.5em
+        +l-digDesktop(margin-bottom, 1em)
         &--left
             position: relative
             display: flex
             flex-shrink: 0
             align-items: flex-start
             justify-content: center
-            width: 9vw
+            width: 5em
             margin-right: 2em
             margin-bottom: 0
             > *
@@ -29,13 +28,16 @@
                 transform: rotate(-90deg) translateX(-41%)
                 color: $help-text-color
             +m-phone()
+                width: 3em
                 margin-right: 15px
+                
     &__addition-block
         width: 15vw
+        max-width: 400px
         flex-shrink: 0
         flex-grow: 2
         margin-right: 2em
-        +m-desktop()
+        +m-digDesktop()
             min-width: 20vw
             width: min-content
         +m-table()
@@ -51,20 +53,5 @@
             margin-bottom: 1em
     &__accent-strong
         font-size: 1.4em
-        +m-desktop()
-            font-size: 1.2em
-    &__action
-        font-weight: bold
-        text-decoration: none
-        color: $main-color
-        opacity: 0.5
-        &:hover
-            opacity: 1
-        i 
-            display: inline-block
-            width: 50px
-            height: 10px
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjIiIGhlaWdodD0iNiIgdmlld0JveD0iMCAwIDYyIDYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0wLjc3ODgwOSA0LjVMNTkuMTM4MiA0LjVMNTUuNjQ2NiAwLjk5OTk5OCIgc3Ryb2tlPSIjMUUxRTFFIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+Cg==')
-            background-size: contain
-            background-position: bottom
-            background-repeat: no-repeat
+        +l-smDesktop(font-size, 1.2em)
+            
