@@ -1,0 +1,125 @@
+.portfolio
+    &__iner
+        align-self: stretch
+        height: 80vh
+        max-height: 1500px
+        width: 100%
+        display: grid
+        grid-template-columns: $b-menu-width 1fr 70%
+        grid-template-rows: 1fr 0.8fr 100px
+        grid-template-areas: '. title image' 'categories description image' '. nav image'
+        gap: 2em
+        margin-left: $d-calc-container-pozition
+
+        @media screen and (max-width: 3000px)
+            grid-template-columns: $b-menu-width 1fr 60%
+        +m-digDesktop()
+            height: 100vh
+            grid-template-columns: $d-menu-width 1fr 50%
+        +m-desktop()
+            height: 100%
+            grid-template-columns: $d-menu-width 1fr 50%
+        +m-desktop()
+            margin-left: $t-calc-container-pozition
+        +m-table()
+            margin-left: 0
+            grid-template-columns: 1fr 1fr
+            grid-template-rows: auto 1fr 0.5fr 70px
+            grid-template-areas: 'categories categories' 'title image' 'description image' 'nav image'
+            gap: 0 1em
+            height: calc( 100vh - 3em )
+            margin-left: 5%
+            margin-bottom: 3em
+        +m-phone()
+            height: auto
+            grid-template-columns: 1fr
+            grid-template-rows: auto
+            grid-template-areas: 'categories' 'title' 'image' 'description' 'nav'
+            gup: 0
+            margin: 3em 0 6em 0
+    &__categories-iner
+        grid-area: categories
+        display: flex
+        flex-direction: column
+        justify-content: center
+        h5 
+            +m-table()
+                display: none
+        +m-phone()
+            padding: 0 5%
+    &__categories
+        list-style: none
+        font-size: 0.8rem
+        +m-table()
+            display: flex
+            flex-wrap: wrap
+            padding: 1em 0
+        li
+            opacity: 0.5
+            &:hover
+                opacity: 1
+            &.active
+                opacity: 1
+        a
+            display: block
+            margin-top: 1em
+            color: $main-color
+            text-decoration: none
+            text-transform: uppercase
+            +m-table()
+                margin-top: 0
+                margin-right: 2em
+
+    &__title
+        grid-area: title
+        display: flex
+        align-items: flex-end
+        +m-phone()
+            padding: 2em 5%
+
+    &__description
+        grid-area: description
+        padding: 3em 0
+        +m-table()
+            padding: 0
+        +m-phone()
+            padding: 2em 5%
+        p
+            padding-bottom: 1em
+        span 
+            font-weight: bold
+        a
+            display: flex
+            align-items: flex-end
+            font-weight: bold
+            color: $main-color
+            text-decoration: none
+            opacity: 0.5
+            i
+                margin-left: 5px
+                margin-bottom: 3px
+    &__nav-iner
+        grid-area: nav
+        display: flex
+        justify-content: space-between
+        align-items: flex-end
+        padding: 3em 0
+        +m-table()
+            justify-content: flex-end
+            padding: 0 
+            margin-bottom: -4px
+            .progress
+                display: none
+        +m-phone()
+            justify-content: center
+
+    &__image
+        grid-area: image
+        figure
+            height: 100%
+            font-size: 0
+            
+        img
+            height: 100%
+            width: 100%
+            object-fit: cover

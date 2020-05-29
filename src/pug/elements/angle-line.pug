@@ -4,9 +4,12 @@ mixin angle-line--left(isLight= false)
     else
         i.angle-line.angle-line--left
 
-mixin angle-line--right()
-    i.angle-line.angle-line--right
-    
+mixin angle-line--right(isLight= false)
+    if isLight
+        i.angle-line.angle-line--right.angle-line--light
+    else
+        i.angle-line.angle-line--right
+        
 mixin angle-line--bottom(isLight= false)
     if isLight 
         i.angle-line.angle-line--bottom.angle-line--light

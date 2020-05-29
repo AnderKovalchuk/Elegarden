@@ -1,0 +1,16 @@
+.grid-info
+    &__iner
+        display: grid
+        grid-template-columns: 1fr 1fr
+        gap: 10vh 10vw
+        +l-digDesktop(gap, 20vh 10vw)
+        +m-table()
+            grid-template-columns: 1fr
+            gap: 1em
+    @media screen and (max-width: $table-width) and (min-width: $phone-width)
+        &__iner
+            margin-bottom: 3em
+        &__item
+            width: 50%
+            &:nth-child(odd)
+                margin-left: 50%

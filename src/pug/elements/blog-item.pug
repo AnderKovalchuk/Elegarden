@@ -1,0 +1,19 @@
+mixin blog-item-blank(title, image, date= '03 марта')
+    a(href="article.html")
+        figure
+            img(src= image alt= title)
+        .blog__label
+            p= date
+            h3= title
+
+mixin blog-item(title, image, date= '03 марта')
+    .blog__item
+        +blog-item-blank(title, image, date)
+
+mixin blog-item--small(title, image, date= '03 марта')
+    .blog__item.blog__item--small
+        +blog-item-blank(title, image, date)
+
+mixin blog-item--big(title, image, date= '03 марта')
+    .blog__item.blog__item--big
+        +blog-item-blank(title, image, date)

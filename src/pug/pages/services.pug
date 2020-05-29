@@ -1,0 +1,28 @@
+extends ../layouts/dark-menu
+
+include ../includes/section
+include ../elements/project-item
+
+include ../blocks/sec
+include ../blocks/container
+include ../blocks/title
+
+block variables
+    - var title = 'Список услуг';
+    - var pageClass = 'services-page';
+    - var mainContentClass = 'services__main';
+
+
+block main-content
+    +section('b', '01', 'light').section--header
+        +container('b')
+            .content.content--always--full
+                .content__iner
+                    +title('h2', 'НАШИ УСЛУГИ').content__title
+                    .projects__iner
+                        +project-item('ЛАНДШАФТНОЕ ПРОЕКТИРОВАНИЕ', 'img/serv_img_1.jpg', '/service.html')
+                        +project-item('ЛАНДШАФТНОЕ СТРОИТЕЛЬСТВО')
+                        +project-item('Ландшафтное озеленение')
+                        +project-item('ландшафтный консалтинг')
+                        +project-item('ОЗЕЛЕНЕНИЕ ИНТЕРЬЕРОВ')
+                        +project-item('ОЗЕЛЕНЕНИЕ КРЫШ')

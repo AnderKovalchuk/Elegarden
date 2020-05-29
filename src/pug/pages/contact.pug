@@ -1,0 +1,25 @@
+extends ../layouts/dark-menu
+
+include ../blocks/sec
+include ../blocks/container
+include ../blocks/title
+
+block variables
+    - var title = 'Главная страница';
+    - var pageClass = 'home-page';
+    - var mainContentClass = 'home-page__main';
+
+block main-content
+    +section('f', '01', 'image', 'img/map.jpg', true)
+        +container().contact__header
+            .contact__iner
+                h1 ELEGARDEN
+                p г. Москва ул. #[br] Нахимовский проспект, д.24
+                p +7 (925) 755-78-91
+                p mail@elegarden.ru
+                .contact__link
+                    a(href="#") Whatsapp
+                    a(href="#") Viber
+                    a(href="#") Telegram
+
+    

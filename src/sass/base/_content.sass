@@ -2,7 +2,7 @@
     display: flex
     width: 80%
     margin: 0 auto
-    +l-digDesktop(width, auto)
+    +l-digDesktop(width, 100%)
     &--mob-wrap
         +l-phone(flex-wrap, wrap)
 
@@ -10,6 +10,8 @@
         padding-right: 0
     &--full-height
         align-self: stretch
+    &--always--full
+        width: 100%
     &__title
         margin-bottom: 1.5em
         +l-digDesktop(margin-bottom, 1em)
@@ -54,4 +56,3 @@
     &__accent-strong
         font-size: 1.4em
         +l-smDesktop(font-size, 1.2em)
-            

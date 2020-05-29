@@ -1,0 +1,61 @@
+.page-scroll
+    &__iner
+        position: fixed
+        top: 3em
+        bottom: 3em
+        left: $d-calc-container-pozition
+        width: $d-menu-width
+        display: flex
+        flex-direction: column
+        z-index: 10
+        visibility: hidden
+        opacity: 0
+        transition: all 1s ease-out
+        +m-desktop()
+            left: $t-calc-container-pozition
+        +m-table()
+            display: none
+        &--active
+            visibility: visible
+            opacity: 1
+    &__nav
+        margin: auto 0
+        list-style: none
+        a
+            display: block
+            padding: 5px 0
+            &::before
+                content: ''
+                display: block
+                height: 2px
+                width: 20px
+                background-color: $light-bg-color
+                opacity: .7
+                transition: all .5s ease-out
+            &:hover
+                &::before
+                    width: 40px
+                    opacity: 1
+        .active
+            a::before
+                width: 100px
+                opacity: 1
+                +m-desktop()
+                    width: 70px
+    &__screen-jump
+        display: flex
+        color: $light-text-color
+        cursor: pointer
+        .angle-line, .angle-line::after
+            background-color: $light-text-color
+    &__screen-number
+        margin-right: 0.5em
+
+    &--dark
+        .page-scroll
+            &__nav a::before
+                background-color: $main-color
+            &__screen-jump
+                color: $main-color
+                .angle-line, .angle-line::after
+                    background-color: $main-color

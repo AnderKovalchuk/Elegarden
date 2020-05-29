@@ -1,5 +1,9 @@
+include ../elements/section-nav-iner
+include ../blocks/container
+//-   .container.content.content--no-right
 footer.footer.section
-    .footer__iner.container.content.content--no-right
+    +container('b').footer__iner
+
         .footer__phone
             p +7 (925) 755-78-91
         .footer__title
@@ -20,5 +24,6 @@ footer.footer.section
                     a(href="#") Telegram
         .footer__add-info
             p Ландшафтная компания
+    +section-nav-iner('00', '', '#', 'top')
 
 
