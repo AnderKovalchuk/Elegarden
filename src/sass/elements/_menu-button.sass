@@ -9,10 +9,7 @@
         color: $main-color 
         cursor: pointer
         transition: all 1s ease-out
-        +m-table()
-            width: 60px
-        +m-phone()
-            width: 50px
+        +l-phone(width, 50px)
     &__menu-line
         &::before, &::after
             content: ''
@@ -33,8 +30,8 @@
             left: 0
             margin-top: 5px
             transform: rotate(0deg)
-        +m-phone()
-            display: none
+        +l-phone(display, none)
+            
     &--light
         color: $light-text-color
         .menu-button__menu-line

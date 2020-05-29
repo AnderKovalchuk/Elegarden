@@ -20,8 +20,7 @@
         &--active-page-scroll, &--top-pozition
             position: fixed
             left: $d-calc-container-pozition
-            +m-desktop()
-                left: $t-calc-container-pozition
+            +l-desktop(left, $t-calc-container-pozition)
         &--active-page-scroll
             +m-phone()
                 position: absolute
@@ -29,19 +28,17 @@
     &__contact
         position: absolute
         right: 0
-        +m-phone()
-            display: none
+        +l-phone(display, none)
     &__logo
-        height: 50px
+        height: 70px
         margin-left: auto
         margin-right: auto
+        +l-desktop(height, 50px)
+        +l-table(height, 40px)
         figure, img
             height: 100%
         &--dark
             display: none
-        +m-table()
-            height: 40px
-
     &--dark
         color: $main-color
         .menu-button
