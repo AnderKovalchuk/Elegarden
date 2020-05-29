@@ -6,8 +6,10 @@
         justify-content: center
         align-self: stretch
         .title__iner
-            width: 60%
-            padding-left: $d-menu-width
+            width: 80%
+            padding-left: $d-calc-container-pozition
+            +l-desktop(padding-left, $t-calc-container-pozition)
+            //padding-left: $d-menu-width
             +m-table()
                 width: 90%
                 padding: 0
@@ -17,7 +19,7 @@
         bottom: 0
         display: flex
         justify-content: center
-        padding-left: $d-menu-width
+        //padding-left: $d-menu-width
         +m-table()
             padding: 0
         .progress

@@ -1,29 +1,12 @@
 .section
     position: relative
-    padding: 5em 0
+    display: flex
+    flex-direction: row
+    align-items: center
+    padding: 6em 0
     font-size: 1rem
-    +m-desktop()
-        padding: 3em 0
-    +m-phone()
-        padding: 3em 0 5em 0
-    &--full-height
-        display: flex
-        align-items: center
-        min-height: 100vh
-    &--no-padding
-        padding: 0
-    &--bg-image
-        background-size: cover
-        background-position: center
-        color: $light-text-color
-    &--bg-light
-        background-color: $light-bg-color
-
-    &__title
-        font-family: $main-font
-        font-weight: 300
-        font-size: 5em
-        text-transform: uppercase
+    +l-digDesktop(padding, 3em 0)
+    +l-phone(padding-bottom, 4em)
     &__nav-iner
         position: absolute
         left: $d-calc-container-pozition
@@ -33,16 +16,35 @@
         color: $main-color
         text-decoration: none
         transition: all 1s ease-out
-        &--light
+        +l-desktop(left, $t-calc-container-pozition)
+        +l-phone(bottom, 1em)
+    &__nav-number
+        margin-right: 0.5em
+
+    &--full-height
+        padding: 3em 0
+        min-height: 100vh
+    &--big
+        min-height: 50vh
+        padding: 6em 0
+        +l-digDesktop(min-height, 100vh)
+    &--medium
+        padding: 6em 0
+    
+    &--stretched-content
+        padding: 0
+        justify-content: stretch
+    &--header
+        padding-top: 150px
+        +l-phone(padding, 100px 0 6em)
+    &--bg-image
+        background-size: cover
+        background-position: center
+        color: $light-text-color
+        .section__nav-iner
             color: $light-text-color
             .angle-line, .angle-line::after
                 background-color: $light-text-color
-        &--hidden
-            visibility: hidden
-            opacity: 0
-        +m-desktop()  
-            left: $t-calc-container-pozition
-        +m-phone()
-            bottom: 1em
-    &__nav-number
-        margin-right: 0.5em
+    &--bg-light
+        background-color: $light-bg-color
+

@@ -1,14 +1,21 @@
 .portfolio
     &__iner
         align-self: stretch
-        height: 100vh
+        height: 80vh
+        max-height: 1500px
         width: 100%
         display: grid
-        grid-template-columns: $d-menu-width 1fr 50%
+        grid-template-columns: $b-menu-width 1fr 70%
         grid-template-rows: 1fr 0.8fr 100px
         grid-template-areas: '. title image' 'categories description image' '. nav image'
-        gap: 1em
+        gap: 2em
         margin-left: $d-calc-container-pozition
+
+        @media screen and (max-width: 3000px)
+            grid-template-columns: $b-menu-width 1fr 60%
+        +m-digDesktop()
+            height: 100vh
+            grid-template-columns: $d-menu-width 1fr 50%
         +m-desktop()
             margin-left: $t-calc-container-pozition
         +m-table()
@@ -64,11 +71,6 @@
         grid-area: title
         display: flex
         align-items: flex-end
-        padding-bottom: 1em
-        +m-table()
-            padding-bottom: 3em
-            .title
-                font-size: 2.5em
         +m-phone()
             padding: 2em 5%
 
@@ -107,36 +109,6 @@
                 display: none
         +m-phone()
             justify-content: center
-    // &__nav
-    //     a
-    //         display: inline-flex
-    //         align-items: flex-end
-    //         height: 1em
-    //         margin: 0 0.5em
-    //     span
-    //         display: none
-    //         margin: 0 0.5em
-    //         +m-table()
-    //             display: inline-block
-    // &__progres
-    //     display: flex
-    //     align-items: flex-end
-    //     +m-table()
-    //         display: none
-    //     span
-    //         margin-bottom: 0.5em
-    //     .progres
-    //         height: 2px
-    //         width: 100px
-    //         flex-shrink: 0
-    //         margin: auto 1.5em 4px 1.5em
-    //         background-color: rgba($main-color, 0.5)
-    //         &::after
-    //             display: block
-    //             content: ''
-    //             height: 2px
-    //             width: 30%
-    //             background-color: $main-color
 
     &__image
         grid-area: image
@@ -148,134 +120,3 @@
             height: 100%
             width: 100%
             object-fit: cover
-
-
-    //     align-self: stretch
-    //     width: 100%
-    //     height: 100vh
-    //     display: grid
-    //     grid-template-columns: $d-menu-width 1fr 50%
-    //     margin-left: $d-calc-container-pozition
-    //     +m-table()
-    //         height: calc(100vh - 3em)
-    //         grid-template-columns: 1fr 1fr
-    //         grid-template-rows: minmax(3em, 0.1fr) 1fr
-    //         margin-left: 0
-    //     +m-phone()
-    //         height: auto
-    //         grid-template-columns: 1fr
-
-    // &__categories-iner
-    //     padding-top: 65vh
-    //     +m-table()
-    //         padding: 1em 5%
-    //         grid-column: 1 / 3
-    //         grid-row: 1 / 2
-    //     +m-phone()
-    //         grid-column: 1 / 2
-    //     h5
-    //         font-weight: normal
-    //         margin-bottom: 0.5em
-    //         +m-table()
-    //             display: none
-    // &__categories
-    //     list-style: none
-    //     font-size: 0.8rem
-    //     +m-table()
-    //         display: flex
-    //     li
-    //         opacity: 0.5
-    //         &:hover
-    //             opacity: 1
-    //         &.active
-    //             opacity: 1
-    //     a
-    //         display: block
-    //         padding: 0.5em 0
-    //         color: $main-color
-    //         text-decoration: none
-    //         text-transform: uppercase
-    //         +m-table()
-    //             margin-right: 1em
-    
-    // &__info
-    //     display: flex
-    //     flex-direction: column
-    //     padding: 2em 1em
-    //     +m-table()
-    //         padding: 0 1em 4em 10%
-    // &__description
-    //     margin-bottom: 100px
-    //     +m-table()
-    //         margin-bottom: 25px
-    //     p
-    //         padding-bottom: 1em
-    //     span 
-    //         font-weight: bold
-    //     a
-    //         display: flex
-    //         align-items: flex-end
-    //         font-weight: bold
-    //         color: $main-color
-    //         text-decoration: none
-    //         opacity: 0.5
-    //         i
-    //             margin-left: 5px
-    //             margin-bottom: 3px
-    
-    // &__title
-    //     margin: auto 0
-    //     +m-table()
-    //         .title
-    //             font-size: 2.5em
-    // &__nav-iner
-    //     display: flex
-    //     justify-content: space-between
-    //     align-items: flex-end
-    //     margin-top: 0
-    //     +m-table()
-    //         justify-content: flex-end
-    // &__nav
-    //     margin-bottom: -4px
-    //     a
-    //         display: inline-flex
-    //         align-items: flex-end
-    //         height: 1em
-    //         margin: 0 0.5em
-    //     span
-    //         display: none
-    //         margin: 0 0.5em
-    //         +m-table()
-    //             display: inline-block
-    // &__progres
-    //     display: flex
-    //     +m-table()
-    //         display: none
-    //     .progres
-    //         height: 2px
-    //         width: 100px
-    //         margin: auto 1em 0 1em 
-    //         flex-shrink: 0
-    //         background-color: rgba($main-color, 0.5)
-    //         &::after
-    //             display: block
-    //             content: ''
-    //             height: 2px
-    //             width: 30%
-    //             background-color: $main-color
-            
-    // &__image
-    //     height: 100%
-    //     width: 100%
-    //     +m-phone()
-    //         grid-row: 2 / 3
-    //     figure
-    //         display: block
-    //         font-size: 0
-    //         height: 100%
-    //         // +m-table()
-    //         //     height: calc( 100% - 3em )
-    //     img
-    //         height: 100%
-    //         width: 100%
-    //         object-fit: cover

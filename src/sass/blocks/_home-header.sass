@@ -1,4 +1,5 @@
 .home-header
+    +l-phone(padding, 0)
     &__iner
         position: relative
         display: flex
@@ -6,6 +7,7 @@
         align-items: center
         justify-content: center
         align-self: stretch
+        
     &__add-text
         position: absolute
         left: 5vw
@@ -13,7 +15,10 @@
         max-width: 330px
         font-weight: bold
         +m-phone()
+            left: 60px
+            bottom: 15px
             font-size: 0.9em
+            
     &__left-text
         position: absolute
         right: 0
