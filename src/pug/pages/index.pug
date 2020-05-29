@@ -1,11 +1,14 @@
 extends ../layouts/main
 
-include ../includes/section
-include ../elements/angle-line
+//- include ../elements/angle-line
 include ../elements/angle-link
 include ../elements/progress
 include ../elements/angle-nav
 include ../elements/section-nav-iner
+
+include ../blocks/sec
+include ../blocks/container
+include ../blocks/title
 
 block variables
     - var title = 'Главная страница';
@@ -13,27 +16,28 @@ block variables
     - var mainContentClass = 'home-page__main';
 
 block main-content
-    +section--full-height('01', '', 'img/home_bg.jpg').section--header
-        .container.home-header__iner
-            .title__iner
-                h2.title.title--like-h1 ELEGARDEN
-                p.title__sub-title Создадим красивый и функциональный сад за 60 дней
+
+    +section('f', '01', 'image', 'img/home_bg.jpg').home-header
+        +container().home-header__iner
+            +title('h1', 'ELEGARDEN')
+                p Создадим красивый и функциональный сад за 60 дней
             .home-header__add-text
                 p Измените ландшафтный дизайн вокруг себя — подчеркните индивидуальность
             .home-header__left-text
                 p 5 лет на страже красоты и функциональности садов
-    +section--full-height('02')
-        .container.content.content--mob-wrap
-            .content__addition-block.number
-                h5.number__title 5
+    +section('b', '02')
+        +container('b')
+            .content.content--mob-wrap
+                .content__addition-block.number
+                    h5.number__title 5
+                    .content__iner
+                        p Лет на страже красоты и функциональности садов
                 .content__iner
-                    p Лет на страже красоты и функциональности садов
-            .content__iner
-                p.content__accent-strong
-                    strong  Elegarden выполняет работы по ландшафтному дизайну, ландшафтному проектированию, ландшафтному строительству, благоустройству, озеленению, уходу за садом, обслуживаю сада 
-                p Ландшафтная компания Elegarden создана для того, чтобы идея Вашего сада стала реальностью. Идею сада и озеленения создают заранее, до наступления весеннего тепла - обсуждают детали, формируют пожелания, наблюдать за тем, как мечта о саде обретает чёткие очертания.
-                +angle-link('Узнать больше о нас ', '/who-are-we.html')
-    .section.section--full-height.section--bg-light.section--no-padding
+                    p.content__accent-strong
+                        strong  Elegarden выполняет работы по ландшафтному дизайну, ландшафтному проектированию, ландшафтному строительству, благоустройству, озеленению, уходу за садом, обслуживаю сада 
+                    p Ландшафтная компания Elegarden создана для того, чтобы идея Вашего сада стала реальностью. Идею сада и озеленения создают заранее, до наступления весеннего тепла - обсуждают детали, формируют пожелания, наблюдать за тем, как мечта о саде обретает чёткие очертания.
+                    +angle-link('Узнать больше о нас ', '/who-are-we.html')
+    +section('', '03', 'light', '', true)
         .portfolio__iner
             .portfolio__categories-iner
                 h5 Категории:
@@ -45,9 +49,8 @@ block main-content
                     li
                         a(href="#") Пространства
             .portfolio__title
-                .title__iner
-                    p.title__sub-title Частный сад
-                    h2.title.title--like-h2 Мурманск 1          
+                +title('h3', 'Мурманск 1', false, true)
+                    p Частный сад        
             .portfolio__description
                 p Площадь: #[span 16 соток]
                 p Город: #[span Москвовская область]

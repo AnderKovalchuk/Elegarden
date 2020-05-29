@@ -1,0 +1,29 @@
+include ../elements/section-nav-iner
+
+mixin section(size= '', number= '00', type= '', bgImage= '', isStretchedContent= false)
+    - var sectionClass = 'section'
+    case size
+        when 'f'
+            - sectionClass += ' section--full-height'
+        when 'b' 
+            - sectionClass += ' section--big'
+        when 'm'
+            - sectionClass += ' section--medium'
+
+    case type
+        when 'image'
+            - sectionClass += ' section--bg-image'
+        when 'light'
+            - sectionClass += ' section--bg-light'
+    
+    if isStretchedContent
+        - sectionClass += ' section--stretched-content'
+        
+    if bgImage
+        - var sectionImage = 'background-image: url(\'' +  bgImage + '\')'
+
+    - sectionClass += ' ' + attributes.class
+
+    section(class= sectionClass style = sectionImage)
+        block
+        +section-nav-iner(number)

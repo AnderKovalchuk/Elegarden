@@ -1,0 +1,24 @@
+mixin title(size, text, isCenter, isTopSubTitle)
+    if isCenter
+        - var titleClass= 'title title__iner title__iner--center'
+    else
+        - var titleClass= 'title title__iner'
+
+    - titleClass += ' ' + attributes.class
+
+    div(class= titleClass)
+        if isTopSubTitle
+            if block
+                .title__sub-title
+                    block
+        case size
+            when 'h1'
+                h2.title--like-h1= text
+            when 'h3'
+                h2.title--like-h3= text
+            default
+                h2.title--like-h2= text
+        if !isTopSubTitle
+            if block
+                .title__sub-title
+                    block

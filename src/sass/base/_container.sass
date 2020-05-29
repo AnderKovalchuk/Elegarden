@@ -1,8 +1,26 @@
 .container   
     width: 70%
     margin: 0 auto
-    +m-desktop()
-        width: 90%
+    +l-digDesktop(width, 80%)
+    +l-desktop(width, 90%)
+
+    &--nav-padding
+        padding-right: $d-menu-width
+        padding-left: $d-menu-width
+        +l-digDesktop(padding-right, 0)
+        +l-table(padding, 0)
+    &--nav-wrap-padding
+        padding-left: $d-menu-width
+        padding-right: $d-menu-width
+        +l-table(padding, 0)
+    &--x2-padding
+        padding-left: calc( #{$d-menu-width} * 2 )
+        padding-right: calc( #{$d-menu-width} * 2 )
+        +m-digDesktop()
+            padding-left: calc( #{$d-menu-width} * 1.5 )
+            padding-right: calc( #{$d-menu-width} * 1.5 )
+        +l-table(padding, 0)
+    
     &--header
         padding-top: 5em
         +m-desktop()
