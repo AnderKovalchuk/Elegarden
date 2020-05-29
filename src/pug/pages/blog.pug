@@ -4,6 +4,10 @@ include ../includes/section
 include ../elements/blog-item
 include ../elements/angle-link
 
+include ../blocks/sec
+include ../blocks/container
+include ../blocks/title
+
 block variables
     - var title = 'Блог';
     - var pageClass = 'blog-page';
@@ -11,19 +15,18 @@ block variables
 
 
 block main-content
-    +section('01')
-        .container.container--header.content.content--no-right
-            .content__iner
-                .content__title.title__iner
-                    h2.title.title--like-h1 НАШ БЛОГ
-
-                .blog__iner
-                    +blog-item('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_1.jpg')
-                    +blog-item--small('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_2.jpg')
-                    +blog-item--small('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_3.jpg')
-                    +blog-item('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_1.jpg')
-                    +blog-item--big('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_4.jpg')
-                    +blog-item('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_2.jpg')
-                    +blog-item('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_1.jpg')
-                .blog__nav
-                    +angle-link('Смотреть больше')
+    +section('b', '01').section--header
+        +container('b')
+            .content.content--always--full
+                .content__iner
+                    +title('h2', 'НАШ БЛОГ').content__title
+                    .blog__iner
+                        +blog-item('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_1.jpg')
+                        +blog-item--small('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_2.jpg')
+                        +blog-item--small('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_3.jpg')
+                        +blog-item('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_1.jpg')
+                        +blog-item--big('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_4.jpg')
+                        +blog-item('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_2.jpg')
+                        +blog-item('НАИМЕНОВАНИЕ СТАТЬИ', '/img/blog_img_1.jpg')
+                    .blog__nav
+                        +angle-link('Смотреть больше')

@@ -98,13 +98,18 @@ class PageScroll{
         if(this.isActiveScroll)
             return;
         this.blockScroll();
+        let newActiveSection = this.getCurrentSection();
+        if(this.activeSection != newActiveSection)
+            this.changeActiveSection(newActiveSection);
         
-        console.log(this.isAvailableScrollJump());
+        console.log(newActiveSection);
 
-        if(this.isTopScroll() && this.isAvailableScrollJump(true))
-            this.moveToPreviousSection();
-        else if (this.isAvailableScrollJump())
-            this.moveToNextSection(false);
+        // console.log(this.isAvailableScrollJump());
+
+        // if(this.isTopScroll() && this.isAvailableScrollJump(true))
+        //     this.moveToPreviousSection();
+        // else if (this.isAvailableScrollJump())
+        //     this.moveToNextSection(false);
     }
     moveToNextSection(isJumpingToTop = true){
         if(this.activeSection < this.pageSections.length - 1){
@@ -191,6 +196,6 @@ class PageScroll{
             this.isActiveScroll = false;
             this.currentClientTopScroll = window.pageYOffset;
             console.log('actine')
-        }, 700);
+        }, 200);
     }
 }

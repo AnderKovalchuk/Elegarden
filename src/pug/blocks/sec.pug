@@ -22,6 +22,8 @@ mixin section(size= '', number= '00', type= '', bgImage= '', isStretchedContent=
     if bgImage
         - var sectionImage = 'background-image: url(\'' +  bgImage + '\')'
 
+    - sectionClass += ' ' + attributes.class
+
     section(class= sectionClass style = sectionImage)
         block
         +section-nav-iner(number)

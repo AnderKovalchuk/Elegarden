@@ -1,25 +1,17 @@
 include ../elements/menu-button
 include page-scroll
-//- .header__menu-button--active-page-scroll
+include header-top
+
 mixin header(isDark= false)
     if isDark
         header.header.header--dark
             .container
-                .header__top
-                    .header__menu-button
-                        +menu-button
-                    .header__logo
-                    .header__contact
-                        p +7 (922) 246 66 55
+                +header-top()
             include main-menu
+        +page-scroll()
     else
         header.header
             .container
-                .header__top
-                    .header__menu-button
-                        +menu-button
-                    .header__logo
-                    .header__contact
-                        p +7 (922) 246 66 55
+                +header-top()
             include main-menu
-    +page-scroll()
+        +page-scroll()
