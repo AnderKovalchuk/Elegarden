@@ -1,8 +1,8 @@
 .section
     position: relative
     display: flex
-    flex-direction: column
-    justify-content: center
+    flex-direction: row
+    align-items: center
     padding: 6em 0
     font-size: 1rem
     +l-digDesktop(padding, 3em 0)
@@ -22,6 +22,7 @@
         margin-right: 0.5em
 
     &--full-height
+        padding: 3em 0
         min-height: 100vh
     &--big
         min-height: 50vh
@@ -33,7 +34,9 @@
     &--stretched-content
         padding: 0
         justify-content: stretch
-
+    &--header
+        padding-top: 150px
+        +l-phone(padding, 100px 0 6em)
     &--bg-image
         background-size: cover
         background-position: center
