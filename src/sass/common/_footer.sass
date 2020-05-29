@@ -1,16 +1,17 @@
 .footer
-    font-size: 1rem
-    +m-phone()
-        font-size: 0.8em
+    font-size: 1rem   
+    +l-phone(font-size, 0.8em)
+
     &__iner
         position: relative
-        min-height: 700px
         display: flex
         flex-direction: column
-        +m-desktop()
-            min-height: 70vh
+        height: 70vh
+        max-height: 700px
+        +l-table(padding-left, 3em)
         +m-phone()
-            min-height: auto
+            height: auto
+            padding-left: 0
     &__phone, &__add-info
         position: absolute
         right: 0
