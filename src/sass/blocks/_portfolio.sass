@@ -6,10 +6,11 @@
         width: 100%
         display: grid
         grid-template-columns: $b-menu-width 1fr 70%
-        grid-template-rows: 1fr 0.8fr 100px
-        grid-template-areas: '. title image' 'categories description image' '. nav image'
-        gap: 2em
-        margin-left: $d-calc-container-pozition
+        grid-template-rows: 1fr 0.8fr 80px
+        grid-template-areas: 'categories title image' 'categories description image' 'categories nav image'
+        gap: 0 2em
+
+        +indent-container-horizontal(margin-left)
 
         @media screen and (max-width: 3000px)
             grid-template-columns: $b-menu-width 1fr 60%
@@ -17,19 +18,14 @@
             height: 100vh
             grid-template-columns: $d-menu-width 1fr 50%
         +m-desktop()
-            height: 100%
-            grid-template-columns: $d-menu-width 1fr 50%
-        +m-desktop()
-            margin-left: $t-calc-container-pozition
+            grid-template-columns: 150px auto 50%
         +m-table()
-            margin-left: 0
-            grid-template-columns: 1fr 1fr
+            grid-template-columns: 0.6fr 0.7fr
             grid-template-rows: auto 1fr 0.5fr 70px
             grid-template-areas: 'categories categories' 'title image' 'description image' 'nav image'
             gap: 0 1em
             height: calc( 100vh - 3em )
-            margin-left: 5%
-            margin-bottom: 3em
+            margin-bottom: 90px
         +m-phone()
             height: auto
             grid-template-columns: 1fr
@@ -39,53 +35,51 @@
             margin: 3em 0 6em 0
     &__categories-iner
         grid-area: categories
-        display: flex
-        flex-direction: column
-        justify-content: center
-        h5 
-            +m-table()
-                display: none
-        +m-phone()
-            padding: 0 5%
-    &__categories
-        list-style: none
-        font-size: 0.8rem
-        +m-table()
-            display: flex
-            flex-wrap: wrap
-            padding: 1em 0
-        li
-            opacity: 0.5
-            &:hover
-                opacity: 1
-            &.active
-                opacity: 1
-        a
-            display: block
-            margin-top: 1em
-            color: $main-color
-            text-decoration: none
-            text-transform: uppercase
-            +m-table()
-                margin-top: 0
-                margin-right: 2em
-
-    &__title
-        grid-area: title
-        display: flex
-        align-items: flex-end
-        +m-phone()
-            padding: 2em 5%
-
-    &__description
-        grid-area: description
+        position: relative
         padding: 3em 0
         +m-table()
             padding: 0
         +m-phone()
-            padding: 2em 5%
+            padding: 0 5%
+        .categories
+            position: sticky
+            top: 55%
+    &__title-iner
+        grid-area: title
+        display: flex
+        flex-direction: column
+        justify-content: flex-end
+        +l-phone(margin, 1.5em 0 1.5em 10%)
+    &__title
+        position: relative
+        word-break: break-all
+        h3 
+            font-weight: 300
+            font-size: 4.5em
+            text-transform: uppercase
+            +l-desktop(font-size, 4em)
+            +l-smDesktop(font-size, 2.5em)
+            +l-table(font-size, 2.5em)
+    &__sub-title
+        margin-bottom: 1em
+        +l-phone(display, none)
+
+    &__title-num
+        position: absolute
+        top: 2em
+        left: -1.5em
+        transform-origin: left top
+        transform: rotate(-90deg)
+        +m-table()
+            top: 1.5em
+
+    &__description
+        grid-area: description
+        padding-top: 100px
+        +l-phone(padding, 2em $t-calc-container-pozition)
         p
-            padding-bottom: 1em
+            padding-bottom: 2em
+            +l-table(padding-bottom, 1em)
         span 
             font-weight: bold
         a
@@ -103,7 +97,11 @@
         display: flex
         justify-content: space-between
         align-items: flex-end
-        padding: 3em 0
+        padding: 2em 0
+        +m-desktop()
+            flex-wrap: wrap
+            > * 
+                margin: 1em auto
         +m-table()
             justify-content: flex-end
             padding: 0 
@@ -117,6 +115,7 @@
         grid-area: image
         figure
             height: 100%
+            width: 100%
             font-size: 0
             
         img

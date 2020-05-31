@@ -1,0 +1,19 @@
+@mixin indent-container-horizontal($property : left)
+    #{$property}: $d-calc-container-pozition
+    +m-desktop()
+        #{$property}: $t-calc-container-pozition
+
+@mixin indent-container-vertical($property : bottom)
+    #{$property}: 6em
+    +m-digDesktop()
+        #{$property}: 3em
+    +m-phone()
+        #{$property}: 4em
+
+@mixin indent-menu-horizontal($property : left)
+    #{$property}: $b-menu-width
+    +m-digDesktop()
+        #{$property}: $d-menu-width
+    +m-table()
+        #{$property}: 0
+

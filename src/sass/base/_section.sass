@@ -9,15 +9,16 @@
     +l-phone(padding-bottom, 4em)
     &__nav-iner
         position: absolute
-        left: $d-calc-container-pozition
-        bottom: 3em
+        bottom: 2em
         display: flex
         cursor: pointer
         color: $main-color
         text-decoration: none
         transition: all 1s ease-out
-        +l-desktop(left, $t-calc-container-pozition)
+        +indent-container-horizontal()
         +l-phone(bottom, 1em)
+        &--hidden
+            visibility: hidden
     &__nav-number
         margin-right: 0.5em
 
@@ -25,18 +26,24 @@
         padding: 3em 0
         min-height: 100vh
     &--big
-        min-height: 50vh
+        min-height: 1000px
         padding: 6em 0
         +l-digDesktop(min-height, 100vh)
     &--medium
         padding: 6em 0
-    
+    &--home-section
+        height: 80vh
+        max-height: 1500px
+        +m-digDesktop()
+            min-height: 100vh
+            height: max-content
+        +l-phone(padding, 3em 0 5em)
     &--stretched-content
-        padding: 0
+        padding: 0 !important
         justify-content: stretch
     &--header
-        padding-top: 150px
-        +l-phone(padding, 100px 0 6em)
+        padding-top: 100px !important
+        +l-phone(padding, 100px 0 6em !important)
     &--bg-image
         background-size: cover
         background-position: center

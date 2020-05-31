@@ -1,0 +1,29 @@
+.categories
+    position: relative
+    z-index: 35
+    font-size: 0.9rem
+    ul
+        list-style: none
+        +m-table()
+            display: flex
+            flex-wrap: wrap
+    li
+        padding: 0.5em 0
+        opacity: 0.5
+        &:hover
+            opacity: 1
+        &.active
+            opacity: 1
+    a
+        line-height: 2em
+        color: $main-color
+        text-decoration: none
+        text-transform: uppercase
+        +l-table(padding-right, 1em )
+        +l-phone(font-size, 0.9em)
+
+    &__title
+        font-size: 1em
+        font-weight: 300
+        margin-bottom: 1em
+        +l-table(display, none)

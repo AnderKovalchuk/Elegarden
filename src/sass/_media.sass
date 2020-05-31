@@ -11,11 +11,11 @@
         @content
 
 @mixin m-table()
-    @media screen and (max-width: $table-width)
+    @media screen and (max-width: $table-width) and (min-height: 400px)
         @content
 
 @mixin m-phone()
-    @media screen and (max-width: $phone-width)
+    @media screen and (max-width: $phone-width), (max-height: 399px)
         @content
 
 @mixin m-min-table()
@@ -36,9 +36,9 @@
         #{$name}: $value
 
 @mixin l-table($name, $value)
-    @media screen and (max-width: $table-width)
+    @media screen and (max-width: $table-width) and (min-height: 400px)
         #{$name}: $value
 
 @mixin l-phone($name, $value)
-    @media screen and (max-width: $phone-width)
+    @media screen and (max-width: $phone-width), (max-height: 399px)
         #{$name}: $value

@@ -1,60 +1,19 @@
 .projects
     &__iner
         display: grid
-        grid-template-columns: 1fr 1fr
-        gap: 3em
+        grid-template-columns: $b-menu-width 1fr
         +m-table()
-            margin-bottom: 70px
-            gap: 2em
-        +m-phone()
             grid-template-columns: 1fr
-            margin-bottom: 0
-    &__item
+            margin-bottom: 3em
+    &__navigation
+        grid-row: 1 / 3
         position: relative
-        height: 15vw
-        padding: 6em
-        font-size: 1rem
-        background-color: $light-text-color
-        +m-digDesktop()
-            height: 40vh
-            padding: 3em
         +m-table()
-            height: 200px
-            max-height: 300px
-            padding: 2em
-        a
-            display: flex
-            flex-direction: column
-            justify-content: space-between
-            height: 100%
-            text-decoration: none
-        .angle-link
-            z-index: 5
-        &:hover
-            .angle-link
-                opacity: 1
-        &--dark
-            .projects__title
-                color: $main-color
+            grid-row: 2 / 3
+        .categories
+            position: sticky
+            top: 55%
+            margin-bottom: 40px
+            +l-table(margin, 1em 0)
     &__title
-        position: relative
-        z-index: 5
-        font-size: 4em
-        font-weight: 300
-        color: $light-text-color
-        text-transform: uppercase
-        +l-digDesktop(font-size, 2.5em)
-        +l-desktop(font-size, 2em)
-        +l-table(font-size, 2em)
-    &__img
-        position: absolute
-        left: 0
-        top: 0
-        right: 0
-        bottom: 0
-        font-size: 0
-        img
-            height: 100%
-            width: 100%
-            object-fit: cover
-    
+        margin-bottom: 1em

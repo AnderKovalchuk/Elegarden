@@ -1,8 +1,8 @@
 .content
     display: flex
-    width: 80%
-    margin: 0 auto
-    +l-digDesktop(width, 100%)
+    //width: 80%
+    //margin: 0 auto
+    //+l-digDesktop(width, 100%)
     &--mob-wrap
         +l-phone(flex-wrap, wrap)
 
@@ -34,14 +34,16 @@
                 margin-right: 15px
                 
     &__addition-block
-        width: 15vw
+        width: 9vw
         max-width: 400px
         flex-shrink: 0
         flex-grow: 2
-        margin-right: 2em
+        margin-right: 3em
         +m-digDesktop()
-            min-width: 20vw
-            width: min-content
+            min-width: 14vw
+            width: 8vw
+        +m-desktop()
+            width: 20vw
         +m-table()
             min-width: 30vw
             margin-right: 30px
@@ -54,5 +56,5 @@
             line-height: 1.5em
             margin-bottom: 1em
     &__accent-strong
-        font-size: 1.4em
+        font-size: 1.2em
         +l-smDesktop(font-size, 1.2em)

@@ -1,18 +1,16 @@
 .page-scroll
     &__iner
         position: fixed
-        top: 3em
-        bottom: 3em
-        left: $d-calc-container-pozition
+        top: 2em
+        bottom: 2em
         width: $d-menu-width
         display: flex
         flex-direction: column
         z-index: 10
-        visibility: hidden
-        opacity: 0
+        //visibility: hidden
+        //opacity: 0
         transition: all 1s ease-out
-        +m-desktop()
-            left: $t-calc-container-pozition
+        +indent-container-horizontal(left)
         +m-table()
             display: none
         &--active

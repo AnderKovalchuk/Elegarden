@@ -1,11 +1,12 @@
 extends ../layouts/dark-menu
 
 include ../includes/section
-include ../elements/project-item
+include ../elements/grid-item
 
 include ../blocks/sec
 include ../blocks/container
 include ../blocks/title
+include ../blocks/categories
 
 block variables
     - var title = 'Что уже сделали';
@@ -13,11 +14,25 @@ block variables
     - var mainContentClass = 'projects__main';
 
 block main-content
-    +section('b', '01', 'light').section--header
-        +container('b')
-            .content.content--always--full
+    +section('', '01', 'light').section--header
+        +container()
+            .projects__iner
+                +title('h2', 'Наши проекты').projects__title
+                .projects__navigation
+                    +categories()
+                .projects__info-col
+                    .grid__iner
+                        +grid-item('Вешки', 'img/proj_img_1.jpg', '/project.html')
+                        +grid-item('Заречье')
+                        +grid-item('захарово')
+                        +grid-item('золотой')
+                        +grid-item('мурманск')
+                        +grid-item('оскол')
+                        
+
+            //- .content.content--always--full
                 .content__iner
-                    +title('h2', 'Наши проекты').content__title
+                    
                     .projects__iner
                         +project-item('Вешки', 'img/proj_img_1.jpg', '/project.html')
                         +project-item('Заречье')

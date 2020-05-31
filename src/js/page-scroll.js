@@ -85,8 +85,10 @@ class PageScroll{
         let a = document.createElement('a');
         a.setAttribute('href', `#sec-${ secIndex }`);
         a.setAttribute('data-section-index', secIndex);
-        a.addEventListener('click', () =>{
+        a.addEventListener('click', (e) =>{
+            e.preventDefault();
             this.changeActiveSection(secIndex);
+            this.moveToActiveSection();
             this.blockScroll();
         })
         li.appendChild(a)
@@ -110,6 +112,17 @@ class PageScroll{
         //     this.moveToPreviousSection();
         // else if (this.isAvailableScrollJump())
         //     this.moveToNextSection(false);
+    }
+    moveToActiveSection(){
+        let sec = this.pageSections[this.activeSection];
+        let pozition = 0;
+        if(sec.height <= this.clientBrowserHeight ){
+            pozition = sec.topPosition - ((this.clientBrowserHeight - sec.height) / 2);
+            console.log(sec.topPosition + ' ::: ' + pozition);
+        } else {
+            pozition = sec.topPosition;
+        }
+        window.scrollTo(0, pozition);
     }
     moveToNextSection(isJumpingToTop = true){
         if(this.activeSection < this.pageSections.length - 1){
@@ -154,13 +167,39 @@ class PageScroll{
     }
 
     getCurrentSection(){
+        if(window.pageYOffset == 0)
+            return 0;
+        if(window.pageYOffset + this.clientBrowserHeight == document.documentElement.offsetHeight)
+            return this.pageSections.length - 1;
+        let scrinCenter = (this.clientBrowserHeight / 2) + window.pageYOffset;
+        let secPosTop = scrinCenter - this.clientBrowserHeight / 3;
+        let secPosBut = scrinCenter + this.clientBrowserHeight / 3;
         for(let i = 0; i < this.pageSections.length; i++ ){
             const sec = this.pageSections[i];
-            if( this.currentClientTopScroll > (sec.topPosition - this.clientBrowserHeight / 2) &&
-                this.currentClientTopScroll < 
-                    (sec.topPosition + sec.height - this.clientBrowserHeight / 2))
-                        return(i);
+            if( secPosTop < (sec.height / 2) + sec.topPosition  && 
+                (sec.height / 2) + sec.topPosition < secPosBut )
+                    return i
         }
+
+        // const coe = this.clientBrowserWidth > 2000 ? 3 : 2; 
+        // if(this.isTopScroll()){
+        //     for(let i = 0; i < this.pageSections.length; i++ ){
+        //         const sec = this.pageSections[i];
+        //         if( this.currentClientTopScroll > (sec.topPosition - this.clientBrowserHeight / coe) &&
+        //             this.currentClientTopScroll < 
+        //                 (sec.topPosition + sec.height - this.clientBrowserHeight / coe))
+        //                     return(i);
+        //     }
+        // } else {
+        //     for(let i = this.pageSections.length - 1 ; i >= 0; i-- ){
+        //         const sec = this.pageSections[i];
+        //         if( this.currentClientTopScroll > (sec.topPosition - this.clientBrowserHeight / coe) &&
+        //             this.currentClientTopScroll < 
+        //                 (sec.topPosition + sec.height - this.clientBrowserHeight / coe))
+        //                     return(i);
+        //     }
+        // }
+        
     }
 
     isAvailableScrollJump(isTopScroll){
@@ -191,11 +230,11 @@ class PageScroll{
         if(this.isActiveScroll)
             return;
         this.isActiveScroll = true;
-        console.log('block');
+        //console.log('block');
         setTimeout(() => {
             this.isActiveScroll = false;
             this.currentClientTopScroll = window.pageYOffset;
-            console.log('actine')
-        }, 200);
+            //console.log('actine')
+        }, 100);
     }
 }

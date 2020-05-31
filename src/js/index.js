@@ -1,4 +1,4 @@
-window.addEventListener('load', () => {
+window.addEventListener('load', (e) => {
     menuToggle();
 
     let pageScroll = new PageScroll();
@@ -7,10 +7,10 @@ window.addEventListener('load', () => {
 });
 
 function initPageScroll(pageScroll){
-    //pageScroll.activePageScrollMenu();
-    // window.addEventListener('scroll', (e) => {
-    //     pageScroll.scrollFollower();
-    // });
+    pageScroll.activePageScrollMenu();
+    window.addEventListener('scroll', (e) => {
+        pageScroll.scrollFollower();
+    });
 }
 
 function menuToggle(){
