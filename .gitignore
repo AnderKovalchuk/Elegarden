@@ -106,5 +106,8 @@ dist
 dev/
 build/
 deploy/
+elegardenTemplate/
 
 gulp/deployTask/_connect.js
+gulp/wpTask/_connect.js
+
