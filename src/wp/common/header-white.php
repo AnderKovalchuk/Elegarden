@@ -15,7 +15,7 @@
         <?php wp_head(); ?>
 	</head>
 	<body class="blog-page">
-		<header class="header header--dark">
+		<header class="header">
 			<div class="container">
 				<div class="header__top">
 					<div class="header__menu-button"><a class="menu-button menu-button__iner menu-button--light" href="#">
@@ -60,8 +60,8 @@
 						<div class="header__contact">
 							<p>+7 (922) 246 66 55</p>
 						</div>
-					</div>
-					<?php
+                    </div>
+                    <?php
                         wp_nav_menu( [
                             'theme_location'  => 'eleg-main-menu',
                             'container'       => false, 
@@ -85,8 +85,8 @@
 					</div>
 				</div>
 			</div>
-		</header>
-		<div class="page-scroll page-scroll__iner page-scroll--dark">
+        </header>
+        <div class="page-scroll page-scroll__iner page-scroll--dark">
 			<ul class="page-scroll__nav"></ul>
 			<div class="page-scroll__screen-jump"><span class="page-scroll__screen-number">01</span><i class="angle-line angle-line--bottom"></i>
 			</div>

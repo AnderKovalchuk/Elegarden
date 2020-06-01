@@ -21,7 +21,7 @@ function uploadTemplate(){
 function watch(){
     gulp.watch('./src/wp/functions.php', gulp.parallel(functions, uploadFunctions));
     gulp.watch('./src/wp/common/**/*.php', gulp.parallel(common, uploadCommon));
-    gulp.watch('./src/wp/templates/**/*.php', gulp.parallel(template, uploadTemplate));
+    gulp.watch('./src/wp/template/**/*.php', gulp.parallel(template, uploadTemplate));
 }
 
 module.exports = gulp.series(
