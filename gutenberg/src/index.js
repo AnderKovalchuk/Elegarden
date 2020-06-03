@@ -6,11 +6,13 @@ import {
     Panel, PanelBody, PanelRow,
     ToggleControl,
     FormFileUpload,
+    Button,
 } from '@wordpress/components';
 import {
     RichText,
     AlignmentToolbar,
     InspectorControls ,
+    InnerBlocks,
 } from '@wordpress/block-editor';
 import {
     arrowLeft,
@@ -19,6 +21,19 @@ import {
     arrowDown,
     more,
 } from '@wordpress/icons';
+import{
+    withSelect
+} from '@wordpress/data'
+
+
+import {  MediaUpload, MediaUploadCheck } from '@wordpress/editor';
+
+const blockStyle = {
+    padding: '20px',
+    border: '1px solid rgba(66,88,99,.4)',
+    background: 'rgba(139,139,150,.1)',
+};
+
 
 registerBlockType( 'elegarden-block/section-bloks', {
     title: 'Секция контента - Elegarden',
@@ -28,35 +43,61 @@ registerBlockType( 'elegarden-block/section-bloks', {
     attributes: {
         size: {
             type: 'string',
-            default: 'section--big',
+            default: 'section',
         },
         isStretchedContent: {
             type: 'boolean',
-            default: 'true',
+            default: 'false',
+        },
+        bgImageId: {
+            type: 'number',
         }
     },
-    edit: ( {setAttributes, size, isStretchedContent} ) => {
+
+    edit: ( props ) => {
+        const {
+            attributes: {
+                size,
+                isStretchedContent,
+                bgImageId,
+            },
+        } = props;
+        console.log(props);
+
         const onChangeSize = ( newSize ) => {
-            setAttributes( { size: newSize } );
+            props.setAttributes( { size: newSize } );
             console.log(size);
         };
         const onChangeStretchedContent = ( statys ) => {
             props.setAttributes( { isStretchedContent: statys } );
             console.log(isStretchedContent)
         };
+        const onUpdateImage = ( image ) => {
+            console.log(image.id);
+            props.setAttributes( { bgImageId: image.id } );
+        };
+        const onRemoveImage = () => {
+            props.setAttributes( {
+                bgImageId: undefined,
+            } );
+        };
+
+        
+
         return(
-            <section>
+            <section style={ blockStyle }>
                 {
                     <InspectorControls>
-                        <PanelBody title="Настройки" initialOpen={ true }>
+                        <PanelBody title="Настройки размера" initialOpen={ true }>
                             <PanelRow>
                                 <SelectControl
                                     label="Размер"
                                     value={ size }
                                     options={ [
                                         { label: 'Во всю высоту', value: 'section--full-height' },
-                                        { label: 'Большая', value: 'section--big' },
+                                        { label: 'Большой', value: 'section--big' },
                                         { label: 'Средний', value: 'section--medium' },
+                                        { label: 'Обычный', value: 'section' },
                                     ] }
                                     onChange={ onChangeSize }
                                 />
@@ -69,49 +110,118 @@ registerBlockType( 'elegarden-block/section-bloks', {
                                     onChange={ onChangeStretchedContent }
                                 />
                             </PanelRow>
+                        </PanelBody>
+                        <PanelBody title="Фоновое изображение" initialOpen={ false }>
                             <PanelRow>
-
-                            <FormFileUpload
-                                accept="image/*"
-                                onChange={ () => console.log('new image') } 
-                            >
-                                Upload
-                            </FormFileUpload>
-
+                                <FormFileUpload
+                                    accept="image/*"
+                                    onChange={ (image) => console.log(image) }
+                                    children="false" 
+                                >
+                                    <Button isSecondary >
+                                        Загрузить изображение
+                                    </Button>
+                                    </FormFileUpload>
+                                </PanelRow>
+                            <PanelRow> 
+                                <MediaUploadCheck fallback="dsyfbk">
+                                <MediaUpload
+                                    title='Background image'
+                                    onSelect={ onUpdateImage }
+                                    allowedTypes='image'
+                                    value={ bgImageId }
+                                    render={ ( { open } ) => (
+                                        <Button
+                                            className={ ! bgImageId ? 'editor-post-featured-image__toggle' : 'editor-post-featured-image__preview' }
+                                            onClick={ open }>
+                                            { 'Загрузить изображение' }
+                                        </Button>
+                                    ) }
+                                />
+                                </MediaUploadCheck>
+                                { !! bgImageId &&
+                                <MediaUploadCheck>
+                                    <Button onClick={ onRemoveImage } isLink isDestructive>
+                                        Удалить изображение
+                                    </Button>
+                                </MediaUploadCheck>
+                                }
                             </PanelRow>
                         </PanelBody>
-                        <Toolbar>
-                            <DropdownMenu 
-                                label = "Размер"
-                                icon = "dashicons-align-center"
-                                controls ={ [
-                                    {
-                                        title: 'Во всю высоту',
-                                        icon: arrowUp,
-                                        onClick: () => onChangeSize('section--full-height'),
-                                    },
-                                    {
-                                        title: 'Большая',
-                                        icon: arrowUp,
-                                        onClick: () => onChangeSize( 'section--big' ),
-                                    },
-                                ] }
-                            />
-                        </Toolbar>
                     </InspectorControls>
                 }
-                <h5> Заголовок блока </h5>
-                <SelectControl
-                    label="Size"
-                    //value={ size }
-                    options={ [
-                        { label: 'Big', value: '100%' },
-                        { label: 'Medium', value: '50%' },
-                        { label: 'Small', value: '25%' },
-                    ] }
-                />
+
+                <InnerBlocks />
+                
             </section>
         );
     },
-    save: () => <div>Hola, mundo!</div>
+    save: ( props ) => {
+        let imageStyle= {};
+        let sectionClass = 'section';
+        sectionClass += ' ' + props.attributes.size;
+        sectionClass += props.attributes.isStretchedContent ? ' section--stretched-content' : '';
+
+        if(props.attributes.bgImageId){
+            sectionClass += ' section--bg-image'
+            imageStyle= {
+                backgroundImage: 'sdj',
+            };
+        }
+        return(
+            <section 
+                className={ sectionClass }
+                style= {imageStyle}
+            >
+                <InnerBlocks.Content />
+            </section>
+        )
+    }
 } );
+
+
+// class ImageSelectorEdit extends Component {
+//     render() {
+//         const { attributes, setAttributes } = this.props;
+//         const { bgImageId } = attributes;
+//         const instructions = <p>To edit the background image, you need permission to upload media.', 'image-selector-example</p>;
+
+//         const onUpdateImage = ( image ) => {
+//             setAttributes( {
+//                 bgImageId: image.id,
+//             } );
+//         };
+
+//         return (
+//             <Fragment>
+//                 <InspectorControls>
+//                     <PanelBody
+//                         title='Background settings'
+//                         initialOpen={ true }
+//                     >
+//                         <div className="wp-block-image-selector-example-image">
+//                             <MediaUploadCheck fallback={ instructions }>
+//                                 <MediaUpload
+//                                     title='Background image'
+//                                     onSelect={ onUpdateImage }
+//                                     allowedTypes={ ALLOWED_MEDIA_TYPES }
+//                                     value={ bgImageId }
+//                                     render={ ( { open } ) => (
+//                                         <Button
+//                                             className={ 'editor-post-featured-image__toggle' }
+//                                             onClick={ open }>
+//                                             { 'Set background image' }
+//                                         </Button>
+//                                     ) }
+//                                 />
+//                             </MediaUploadCheck>
+//                         </div>
+//                     </PanelBody>
+//                 </InspectorControls>
+//                 <div>
+//                     <InnerBlocks />
+//                 </div>
+//             </Fragment>
+//         );
+//     }
+// }

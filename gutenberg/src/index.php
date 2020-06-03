@@ -10,7 +10,7 @@ $asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
 function eleg_sec_init() {
     wp_enqueue_script(
         'elegarden-section-block-script',
-		plugins_url( 'index.js?v2', __FILE__ ),
+		plugins_url( 'index.js?v58', __FILE__ ),
 		array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components' )
     );
 }
