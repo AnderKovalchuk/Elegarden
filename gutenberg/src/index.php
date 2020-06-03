@@ -4,12 +4,14 @@
  * Author: Ander Kovalchuk
  * Version: 1.0.0
  */
-  
+$asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
+ 
+
 function eleg_sec_init() {
     wp_enqueue_script(
         'elegarden-section-block-script',
-		plugins_url( 'eleg-sec-block.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-element', 'wp-editor' )
+		plugins_url( 'index.js?v2', __FILE__ ),
+		array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components' )
     );
 }
 add_action( 'enqueue_block_editor_assets', 'eleg_sec_init' );

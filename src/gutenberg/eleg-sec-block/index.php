@@ -8,8 +8,8 @@
 function eleg_sec_init() {
     wp_enqueue_script(
         'elegarden-section-block-script',
-		plugins_url( 'eleg-sec-block.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-element', 'wp-editor' )
+		plugins_url( 'eleg-sec-block.js?v17', __FILE__ ),
+		array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components' )
     );
 }
 add_action( 'enqueue_block_editor_assets', 'eleg_sec_init' );

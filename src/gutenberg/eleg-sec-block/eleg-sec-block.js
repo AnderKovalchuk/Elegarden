@@ -5,22 +5,23 @@ wp.blocks.registerBlockStyle( 'core/quote', {
     label: 'Fancy Quote',
 } );
 
-( function( blocks, editor, element ) {
+( function( blocks, editor, element, components ) {
 	var el = element.createElement;
 	var RichText = editor.RichText;
 	var AlignmentToolbar = editor.AlignmentToolbar;
 	var BlockControls = editor.BlockControls;
-	var InspectorControls = editor.InspectorControls;
+    var InspectorControls = editor.InspectorControls;
+    var Select = editor.SelectControl;
  
     var blockStyle = {
         backgroundColor: '#900',
         color: '#fff',
         padding: '20px',
     };
- 
+
     blocks.registerBlockType( 'elegarden-block/section-bloks', {
 		title: 'Секция контента - Elegarden',
-		description: 'Горизонтальный блок для размещения контента на странице',
+		description: 'Горизонтальный блок для размещения контента на странице 2',
 		icon: 'dashicons-excerpt-view',
 		category: 'common',
 		attributes: {
@@ -53,17 +54,33 @@ wp.blocks.registerBlockStyle( 'core/quote', {
 					{
 						value: alignment,
 						onChange: onChangeAlignment,
-					}
+                    }
+                    
 				)
-			),
-			el(
-                RichText,
-                {
-                    tagName: 'p',
-                    className: props.className,
-                    onChange: onChangeContent,
-                    value: title,
-                }
+            ),
+            el(
+                'section',
+                null,
+                el('h5', null, 'Заголовок секции'),
+                els(Select,
+                    {
+                        label="Size",
+                        options= [
+                            { label: 'Big', value: '100%' },
+                            { label: 'Medium', value: '50%' },
+                            { label: 'Small', value: '25%' },
+                        ]
+                    }
+                ),
+                el(
+                    RichText,
+                    {
+                        tagName: 'p',
+                        className: props.className,
+                        onChange: onChangeContent,
+                        value: title,
+                    }
+                )
             )];
         },
  
@@ -76,7 +93,8 @@ wp.blocks.registerBlockStyle( 'core/quote', {
 }(
     window.wp.blocks,
     window.wp.editor,
-    window.wp.element
+    window.wp.element,
+    window.wp.components
 ) );
 
 
