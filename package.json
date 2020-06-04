@@ -47,6 +47,8 @@
     "vinyl-ftp": "^0.6.1"
   },
   "dependencies": {
+    "@wordpress/compose": "^3.16.0",
+    "@wordpress/data": "^4.19.0",
     "@wordpress/editor": "^9.17.0",
     "gup": "^2.0.4",
     "normalize.css": "^8.0.1"

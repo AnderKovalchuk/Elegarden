@@ -7,6 +7,9 @@ import {
     ToggleControl,
     FormFileUpload,
     Button,
+    Spinner,
+    ResponsiveWrapper,
+    TextControl,
 } from '@wordpress/components';
 import {
     RichText,
@@ -33,12 +36,16 @@ const blockStyle = {
     border: '1px solid rgba(66,88,99,.4)',
     background: 'rgba(139,139,150,.1)',
 };
+const blockStyle2 = {
+    padding: '20px',
+    border: '1px solid rgba(66,88,99,.8)',
+};
 
 
 registerBlockType( 'elegarden-block/section-bloks', {
     title: 'Секция контента - Elegarden',
     description: 'Горизонтальный блок для размещения контента на странице',
-    icon: 'dashicons-excerpt-view',
+    icon: 'editor-insertmore',
     category: 'common',
     attributes: {
         size: {
@@ -47,10 +54,14 @@ registerBlockType( 'elegarden-block/section-bloks', {
         },
         isStretchedContent: {
             type: 'boolean',
-            default: 'false',
+            default: false,
         },
-        bgImageId: {
-            type: 'number',
+        isHeaderContent: {
+            type: 'boolean',
+            default: false,
+        },
+        bgImage: {
+            type: 'string',
         }
     },
 
@@ -59,30 +70,28 @@ registerBlockType( 'elegarden-block/section-bloks', {
             attributes: {
                 size,
                 isStretchedContent,
-                bgImageId,
+                bgImage,
+                isHeaderContent,
             },
         } = props;
-        console.log(props);
 
         const onChangeSize = ( newSize ) => {
             props.setAttributes( { size: newSize } );
-            console.log(size);
         };
         const onChangeStretchedContent = ( statys ) => {
             props.setAttributes( { isStretchedContent: statys } );
-            console.log(isStretchedContent)
+        };
+        const onChangeHeaderContent = ( statys ) => {
+            props.setAttributes( { isHeaderContent: statys } );
         };
         const onUpdateImage = ( image ) => {
-            console.log(image.id);
-            props.setAttributes( { bgImageId: image.id } );
+            props.setAttributes( { bgImage: image.url } );
         };
         const onRemoveImage = () => {
             props.setAttributes( {
                 bgImageId: undefined,
             } );
         };
-
-        
 
         return(
             <section style={ blockStyle }>
@@ -105,46 +114,48 @@ registerBlockType( 'elegarden-block/section-bloks', {
                             <PanelRow>
                                 <ToggleControl
                                     label="Убрать отступы"
-                                    // help={ hasFixedBackground ? 'Has fixed background.' : 'No fixed background.' }
                                     checked = { isStretchedContent }
                                     onChange={ onChangeStretchedContent }
                                 />
                             </PanelRow>
+                            <PanelRow>
+                                <ToggleControl
+                                    label="Секция в шапке сайта"
+                                    checked = { isHeaderContent }
+                                    onChange={ onChangeHeaderContent }
+                                />
+                            </PanelRow>
                         </PanelBody>
                         <PanelBody title="Фоновое изображение" initialOpen={ false }>
-                            <PanelRow>
-                                <FormFileUpload
-                                    accept="image/*"
-                                    onChange={ (image) => console.log(image) }
-                                    children="false" 
-                                >
-                                    <Button isSecondary >
-                                        Загрузить изображение
-                                    </Button>
-                                    </FormFileUpload>
-                                </PanelRow>
                             <PanelRow> 
                                 <MediaUploadCheck fallback="dsyfbk">
                                 <MediaUpload
                                     title='Background image'
                                     onSelect={ onUpdateImage }
                                     allowedTypes='image'
-                                    value={ bgImageId }
+                                    value={ bgImage }
                                     render={ ( { open } ) => (
                                         <Button
-                                            className={ ! bgImageId ? 'editor-post-featured-image__toggle' : 'editor-post-featured-image__preview' }
+                                            className={ !! bgImage ? 'editor-post-featured-image__toggle' : 'editor-post-featured-image__preview' }
                                             onClick={ open }>
-                                            { 'Загрузить изображение' }
+                                            { ! bgImage && ('Загрузить изображение') }
+                                            { bgImage && 
+                                                <ResponsiveWrapper
+                                                    naturalWidth= "300px"
+                                                    naturalHeight = "300px"
+                                                >
+                                                    <img src={ bgImage } width="100%" />
+                                                </ResponsiveWrapper>}
                                         </Button>
                                     ) }
                                 />
                                 </MediaUploadCheck>
-                                { !! bgImageId &&
-                                <MediaUploadCheck>
-                                    <Button onClick={ onRemoveImage } isLink isDestructive>
-                                        Удалить изображение
-                                    </Button>
-                                </MediaUploadCheck>
+                                { !! bgImage &&
+                                    <MediaUploadCheck>
+                                        <Button onClick={ onRemoveImage } isLink isDestructive>
+                                            Удалить изображение
+                                        </Button>
+                                    </MediaUploadCheck>
                                 }
                             </PanelRow>
                         </PanelBody>
@@ -161,11 +172,12 @@ registerBlockType( 'elegarden-block/section-bloks', {
         let sectionClass = 'section';
         sectionClass += ' ' + props.attributes.size;
         sectionClass += props.attributes.isStretchedContent ? ' section--stretched-content' : '';
+        sectionClass += props.attributes.isHeaderContent ? ' section--header' : '';
 
-        if(props.attributes.bgImageId){
+        if(props.attributes.bgImage){
             sectionClass += ' section--bg-image'
             imageStyle= {
-                backgroundImage: 'sdj',
+                backgroundImage: ` url('${ props.attributes.bgImage }') `,
             };
         }
         return(
@@ -179,7 +191,112 @@ registerBlockType( 'elegarden-block/section-bloks', {
     }
 } );
 
+registerBlockType( 'elegarden-block/container-bloks-number', {
+    title: 'Блок контента - Elegarden',
+    description: 'Горизонтальный блок для размещения контента на странице',
+    icon: 'excerpt-view',
+    category: 'common',
+    attributes: {
+        number: {
+            type: 'string',
+            default: '5',
+        },
+        rightText: {
+            type: 'string',
+            source: 'html',
+            selector: 'p',
+        },
+        size: {
+            type: 'string',
+            default: 'container--nav-padding',
+        },
+    },
+    edit: ( props ) => {
+        const {
+            attributes: {
+                number,
+                rightText,
+                size,
+            },
+        } = props;
 
+        const onChangeNumber = ( newNumber ) => {
+            props.setAttributes( { number: newNumber } );
+        };
+        const onChangeText = ( newText ) => {
+            props.setAttributes( { rightText: newText } );
+        };
+        const onChangeSize = ( newSize ) => {
+            props.setAttributes( { size: newSize } );
+        };
+        
+        return(
+            <section style={ blockStyle }>
+                {
+                    <InspectorControls>
+                        <PanelBody title="Настройки размера" initialOpen={ true }>
+                            <PanelRow>
+                                <SelectControl
+                                    label="Размер"
+                                    value={ size }
+                                    options={ [
+                                        { label: 'Во всю шырину', value: 'container' },
+                                        { label: 'Отступ слева', value: 'container--nav-padding' },
+                                        { label: 'Отступ слева и справа', value: 'container--nav-wrap-padding' },
+                                        { label: 'Двойной отступ', value: 'container--x2-padding' },
+                                    ] }
+                                    onChange={ onChangeSize }
+                                />
+                            </PanelRow>
+                        </PanelBody>
+                    </InspectorControls>
+                }
+
+
+                <h4>Контентейнер с числом</h4>
+                <TextControl
+                    name= "number"
+                    label= "Число"
+                    value= { number }
+                    onChange={ onChangeNumber }
+                />
+                <RichText
+                    tagName= "p"
+                    name= "rightText"
+                    value= { rightText }
+                    placeholder= "Текст возле числа"
+                    onChange={ onChangeText }
+                    formattingControls={ [ 'bold', 'italic' ] }
+                />
+                <hr />
+                <h5>Левая часть контента</h5>
+                <InnerBlocks />
+            </section>
+        );
+    },
+
+    save: ( props ) => {
+        let containerClass = 'container' + ' ' + props.attributes.size;
+
+        return(
+            <div className= { containerClass }>
+                <div className="content content--mob-wrap">
+                    <div className="content__addition-block number">
+                        <h5 className="number__title">
+                            { props.attributes.number }
+                        </h5>
+                        <div className="content__iner">
+                        <RichText.Content tagName="p" value={ props.attributes.rightText } />
+                        </div>
+                    </div>
+                    <div className="content__iner">
+                        <InnerBlocks.Content />
+					</div>
+                </div>
+            </div>
+        )
+    }
+} );
 // class ImageSelectorEdit extends Component {
 //     render() {
 //         const { attributes, setAttributes } = this.props;
