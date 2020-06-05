@@ -10,7 +10,7 @@ let clean               = require('./_clean'),
 
 function uploadTemplate(){
     return gulp.src('./elegardenTemplate/**/*.*', {buffer: false})
-        .pipe(connect.dest('/wp-content/themes/elegarden'));
+        .pipe(connect.dest('/elegarden.ru/wp-content/themes/elegarden'));
 }
 module.exports = gulp.series(
     clean, 

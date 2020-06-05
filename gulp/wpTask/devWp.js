@@ -7,15 +7,15 @@ let functions       = require('./_functions'),
 
 function uploadFunctions(){
     return gulp.src('./src/wp/functions.php', {buffer: false})
-        .pipe(connect.dest('/wp-content/themes/elegarden'));
+        .pipe(connect.dest('/elegarden.ru/wp-content/themes/elegarden'));
 }
 function uploadCommon(){
     return gulp.src('./src/wp/common/**/*.php', {buffer: false})
-        .pipe(connect.dest('/wp-content/themes/elegarden'));
+        .pipe(connect.dest('/elegarden.ru/wp-content/themes/elegarden'));
 }
 function uploadTemplate(){
     return gulp.src('./src/wp/template/**/*.php', {buffer: false})
-        .pipe(connect.dest('/wp-content/themes/elegarden'));
+        .pipe(connect.dest('/elegarden.ru/wp-content/themes/elegarden'));
 }
 
 function watch(){
