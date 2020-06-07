@@ -13,20 +13,9 @@ import {
 } from '@wordpress/components';
 import {
     RichText,
-    AlignmentToolbar,
     InspectorControls ,
     InnerBlocks,
 } from '@wordpress/block-editor';
-import {
-    arrowLeft,
-    arrowRight,
-    arrowUp,
-    arrowDown,
-    more,
-} from '@wordpress/icons';
-import{
-    withSelect
-} from '@wordpress/data'
 
 
 import {  MediaUpload, MediaUploadCheck } from '@wordpress/editor';
@@ -46,7 +35,7 @@ registerBlockType( 'elegarden-block/section-bloks', {
     title: 'Секция контента - Elegarden',
     description: 'Горизонтальный блок для размещения контента на странице',
     icon: 'editor-insertmore',
-    category: 'common',
+    category: 'elegarden',
     attributes: {
         size: {
             type: 'string',
@@ -170,6 +159,7 @@ registerBlockType( 'elegarden-block/section-bloks', {
     save: ( props ) => {
         let imageStyle= {};
         let sectionClass = 'section';
+        let navNumberEl = <a className="section__nav-iner" href="#"><span className="section__nav-number">00</span><i className="angle-line angle-line--bottom"></i></a>;
         sectionClass += ' ' + props.attributes.size;
         sectionClass += props.attributes.isStretchedContent ? ' section--stretched-content' : '';
         sectionClass += props.attributes.isHeaderContent ? ' section--header' : '';
@@ -179,23 +169,26 @@ registerBlockType( 'elegarden-block/section-bloks', {
             imageStyle= {
                 backgroundImage: ` url('${ props.attributes.bgImage }') `,
             };
+            navNumberEl = <a className="section__nav-iner" href="#"><span className="section__nav-number">00</span><i className="angle-line angle-line--bottom"></i></a>;
         }
+
         return(
             <section 
                 className={ sectionClass }
                 style= {imageStyle}
             >
                 <InnerBlocks.Content />
+            { navNumberEl }
             </section>
         )
     }
 } );
 
 registerBlockType( 'elegarden-block/container-bloks-number', {
-    title: 'Блок контента - Elegarden',
+    title: 'Цифровой блок контента - Elegarden',
     description: 'Горизонтальный блок для размещения контента на странице',
     icon: 'excerpt-view',
-    category: 'common',
+    category: 'elegarden',
     attributes: {
         number: {
             type: 'string',
@@ -297,48 +290,291 @@ registerBlockType( 'elegarden-block/container-bloks-number', {
         )
     }
 } );
-// class ImageSelectorEdit extends Component {
-//     render() {
-//         const { attributes, setAttributes } = this.props;
-//         const { bgImageId } = attributes;
-//         const instructions = <p>To edit the background image, you need permission to upload media.', 'image-selector-example</p>;
 
-//         const onUpdateImage = ( image ) => {
-//             setAttributes( {
-//                 bgImageId: image.id,
-//             } );
-//         };
+registerBlockType( 'elegarden-block/container-bloks-title', {
+    title: 'Блок контента с заголовком - Elegarden',
+    description: 'Горизонтальный блок для размещения контента на странице',
+    icon: 'excerpt-view',
+    category: 'elegarden',
+    attributes: {
+        title: {
+            type: 'string',
+            default: 'Заголовок',
+        },
+        titlePosition: {
+            type: 'string',
+            default: 'top',
+        },
+        size: {
+            type: 'string',
+            default: 'container--nav-padding',
+        },
+    },
+    edit: ( props ) => {
+        const {
+            attributes: {
+                size,
+                title,
+                titlePosition,
+            },
+        } = props;
 
-//         return (
-//             <Fragment>
-//                 <InspectorControls>
-//                     <PanelBody
-//                         title='Background settings'
-//                         initialOpen={ true }
-//                     >
-//                         <div className="wp-block-image-selector-example-image">
-//                             <MediaUploadCheck fallback={ instructions }>
-//                                 <MediaUpload
-//                                     title='Background image'
-//                                     onSelect={ onUpdateImage }
-//                                     allowedTypes={ ALLOWED_MEDIA_TYPES }
-//                                     value={ bgImageId }
-//                                     render={ ( { open } ) => (
-//                                         <Button
-//                                             className={ 'editor-post-featured-image__toggle' }
-//                                             onClick={ open }>
-//                                             { 'Set background image' }
-//                                         </Button>
-//                                     ) }
-//                                 />
-//                             </MediaUploadCheck>
-//                         </div>
-//                     </PanelBody>
-//                 </InspectorControls>
-//                 <div>
-//                     <InnerBlocks />
-//                 </div>
-//             </Fragment>
-//         );
-//     }
-// }
+        const onChangeTitle = ( newTitle ) => {
+            props.setAttributes( { title: newTitle } );
+        };
+        const onChangeTitlePosition = ( newPosition ) => {
+            props.setAttributes( { titlePosition: newPosition } );
+        };
+        const onChangeSize = ( newSize ) => {
+            console.log(newSize + ' ::: ' + size);
+            props.setAttributes( { size: newSize } );
+            
+        };
+        
+        return(
+            <section style={ blockStyle }>
+                {
+                    <InspectorControls>
+                        <PanelBody title="Настройки размера" initialOpen={ true }>
+                            <PanelRow>
+                                <SelectControl
+                                    label="Размер"
+                                    value={ size }
+                                    options={ [
+                                        { label: 'Во всю шырину', value: 'container' },
+                                        { label: 'Отступ слева', value: 'container--nav-padding' },
+                                        { label: 'Отступ слева и справа', value: 'container--nav-wrap-padding' },
+                                        { label: 'Двойной отступ', value: 'container--x2-padding' },
+                                    ] }
+                                    onChange={ onChangeSize }
+                                />
+                            </PanelRow>
+                            <PanelRow>
+                                <SelectControl
+                                    label="Позиция заголовка"
+                                    value={ titlePosition }
+                                    options={ [
+                                        { label: 'Слева', value: 'left' },
+                                        { label: 'Сверху', value: 'top' },
+                                    ] }
+                                    onChange={ onChangeTitlePosition }
+                                />
+                            </PanelRow>
+                        </PanelBody>
+                    </InspectorControls>
+                }
+
+
+                <h4>Контентейнер с заголовком</h4>
+                <TextControl
+                    name= "title"
+                    label= "Заголовок блока"
+                    value= { title }
+                    onChange={ onChangeTitle }
+                />
+                <hr />
+                <h5>Основной контент</h5>
+                <InnerBlocks />
+            </section>
+        );
+    },
+
+    save: ( props ) => {
+        let containerClass = 'container ' + props.attributes.size;
+        console.log(props);
+
+        return(
+            <div className= { containerClass }>
+                <div className="content">
+                    { props.attributes.titlePosition == 'left' &&
+                        <div className="content__title content__title--left">
+							<div className="title title__iner">
+								<h2 className="title--like-h3">
+                                    { props.attributes.title }
+                                </h2>
+							</div>
+						</div>
+                    }
+                    <div className="content__iner">
+                        { props.attributes.titlePosition == 'top' &&
+                            <div className="title title__iner content__title">
+                                <h2 className="title--like-h3">
+                                    { props.attributes.title }
+                                </h2>
+                            </div>
+                        }
+                        <InnerBlocks.Content />
+					</div>
+                </div>
+            </div>
+        )
+    }
+} );
+
+registerBlockType( 'elegarden-block/container-bloks-chronology', {
+    title: 'Секция с хронологией - Elegarden',
+    description: 'Секция для вывода хронологического списка ',
+    icon: 'editor-insertmore',
+    category: 'elegarden',
+    attributes: {
+        title: {
+            type: 'string',
+            default: 'Этапы работы',
+        },
+        titlePosition: {
+            type: 'string',
+            default: 'top',
+        },
+        size: {
+            type: 'string',
+            default: 'container--nav-padding',
+        },
+    },
+    edit: ( props ) => {
+        const {
+            attributes: {
+                size,
+                title,
+                titlePosition,
+            },
+        } = props;
+
+        const onChangeTitle = ( newTitle ) => {
+            props.setAttributes( { title: newTitle } );
+        };
+        const onChangeTitlePosition = ( newPosition ) => {
+            props.setAttributes( { titlePosition: newPosition } );
+        };
+        const onChangeSize = ( newSize ) => {
+            props.setAttributes( { size: newSize } );
+        };
+        
+        return(
+            <section style={ blockStyle }>
+                {
+                    <InspectorControls>
+                        <PanelBody title="Настройки размера" initialOpen={ true }>
+                            <PanelRow>
+                                <SelectControl
+                                    label="Размер"
+                                    value={ size }
+                                    options={ [
+                                        { label: 'Во всю шырину', value: 'container' },
+                                        { label: 'Отступ слева', value: 'container--nav-padding' },
+                                        { label: 'Отступ слева и справа', value: 'container--nav-wrap-padding' },
+                                        { label: 'Двойной отступ', value: 'container--x2-padding' },
+                                    ] }
+                                    onChange={ onChangeSize }
+                                />
+                            </PanelRow>
+                            <PanelRow>
+                                <SelectControl
+                                    label="Позиция заголовка"
+                                    value={ titlePosition }
+                                    options={ [
+                                        { label: 'Слева', value: 'left' },
+                                        { label: 'Сверху', value: 'top' },
+                                    ] }
+                                    onChange={ onChangeTitlePosition }
+                                />
+                            </PanelRow>
+                        </PanelBody>
+                    </InspectorControls>
+                }
+
+
+                <h4>Секция с хронологией</h4>
+                <TextControl
+                    name= "title"
+                    label= "Заголовок блока"
+                    value= { title }
+                    onChange={ onChangeTitle }
+                />
+                <hr />
+                <h5>Элементы хронологии</h5>
+                <InnerBlocks 
+                    allowedBlocks = {['elegarden-block/container-bloks-chronology-item']}
+                    
+                />
+            </section>
+        );
+    },
+
+    save: ( props ) => {
+        return(
+            <section className="section section--bg-light">
+                <div className="container container--nav-padding">
+                    <div className="content chronology">
+                        <div className="content__iner">
+                            <div className="title title__iner title__iner--center">
+                                <h2 className="title--like-h3">
+                                    { props.attributes.title }
+                                </h2>
+                            </div>
+                            <div className="chronology__iner">
+                                <InnerBlocks.Content />
+                                <div class="line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a className="section__nav-iner" href="#">
+                    <span className="section__nav-number">00</span>
+                    <i className="angle-line angle-line--bottom"></i>
+                </a>
+            </section>
+        )
+    }
+} );
+
+registerBlockType( 'elegarden-block/container-bloks-chronology-item', {
+    title: 'Элемент хронологии - Elegarden',
+    description: 'Элемент для блока вывода хронологического списка ',
+    icon: 'excerpt-view',
+    category: 'elegarden',
+    attributes: {
+        title: {
+            type: 'string',
+            default: '00',
+        },
+    },
+    edit: ( props ) => {
+        const {
+            attributes: {
+                title,
+            },
+        } = props;
+        const onChangeTitle = ( newTitle ) => {
+            props.setAttributes( { title: newTitle } );
+        };
+
+        return(
+            <div style={ blockStyle }>
+                <h5> Элемент хроноголии </h5>
+                <TextControl
+                    name= "title"
+                    label= "Заголовок блока"
+                    value= { title }
+                    onChange={ onChangeTitle }
+                />
+                <hr />
+                <h6> Информация в блоке </h6>
+                <InnerBlocks />
+            </div>
+        );
+    },
+
+    save: ( props ) => {
+        return(
+            <div className="chronology__item">
+                <div className="line"></div>
+                <div className="chronology__content">
+                    <h3>{ props.attributes.title }</h3>
+                    <div className="chronology__text">
+                        <InnerBlocks.Content />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+} );

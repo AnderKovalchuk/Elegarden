@@ -4,8 +4,24 @@
  * Author: Ander Kovalchuk
  * Version: 1.0.0
  */
-$asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
- 
+$asset_file = include( plugin_dir_path( __FILE__ ) . 'index.asset.php');
+
+function eleg_sec_create_category( $categories, $post ) {
+    if ( $post->post_type !== 'post' ) {
+        return $categories;
+    }
+    return array_merge(
+        $categories,
+        array(
+            array(
+                'slug' => 'elegarden',
+                'title' => 'Блоки для шаблона Elegarden',
+                'icon'  => 'wordpress',
+            ),
+        )
+    );
+}
+add_filter( 'block_categories', 'eleg_sec_create_category', 10, 2 );
 
 function eleg_sec_init() {
     wp_enqueue_script(
