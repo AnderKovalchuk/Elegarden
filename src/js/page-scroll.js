@@ -17,7 +17,8 @@ class PageScroll{
             document.querySelector('.header__menu-button');
         
         let numEl = this.pageScrollMenu.querySelector('.page-scroll__screen-number');
-        numEl.addEventListener('click', () => this.moveToNextSection());
+        if(numEl)
+            numEl.addEventListener('click', () => this.moveToNextSection());
 
         this.initPageSections();
         this.initStaticScroll();
@@ -101,7 +102,7 @@ class PageScroll{
             return;
         this.blockScroll();
         let newActiveSection = this.getCurrentSection();
-        if(this.activeSection != newActiveSection)
+        if(newActiveSection && this.activeSection != newActiveSection)
             this.changeActiveSection(newActiveSection);
         
         console.log(newActiveSection);
