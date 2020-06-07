@@ -3,12 +3,12 @@
 	<head>
         <meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/main.css?v6">
-		<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-		<link rel="manifest" href="/site.webmanifest">
-		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri() ?>css/main.css?v6">
+		<link rel="apple-touch-icon" sizes="76x76" href="<?php echo get_template_directory_uri() ?>/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_template_directory_uri() ?>/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_template_directory_uri() ?>/favicon-16x16.png">
+		<link rel="manifest" href="<?php echo get_template_directory_uri() ?>/site.webmanifest">
+		<link rel="mask-icon" href="<?php echo get_template_directory_uri() ?>/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="msapplication-TileColor" content="#00aba9">
         <meta name="theme-color" content="#ffffff">
         

@@ -25,23 +25,8 @@
                 </div>
             </div><a class="section__nav-iner" href="#"><span class="section__nav-number">01</span><i class="angle-line angle-line--bottom"></i></a>
         </section>
-        <section class="section section--home-section">
-            <div class="container container--nav-wrap-padding undefined">
-                <div class="content content--mob-wrap">
-                    <div class="content__addition-block number">
-                        <h5 class="number__title">5</h5>
-                        <div class="content__iner">
-                            <p>Лет на страже красоты и функциональности садов</p>
-                        </div>
-                    </div>
-                    <div class="content__iner">
-                        <p class="content__accent-strong"><strong> Elegarden выполняет работы по ландшафтному дизайну, ландшафтному проектированию, ландшафтному строительству, благоустройству, озеленению, уходу за садом, обслуживаю сада </strong></p>
-                        <p>Ландшафтная компания Elegarden создана для того, чтобы идея Вашего сада стала реальностью. Идею сада и озеленения создают заранее, до наступления весеннего тепла - обсуждают детали, формируют пожелания, наблюдать за тем, как мечта о саде обретает чёткие очертания.</p>
-                        <div class="angle-link"><a href="/who-are-we.html"><span>Узнать больше о нас </span><i class="angle-line angle-line--left"></i></a></div>
-                    </div>
-                </div>
-            </div><a class="section__nav-iner" href="#"><span class="section__nav-number">02</span><i class="angle-line angle-line--bottom"></i></a>
-        </section>
+        
+        <?php echo the_content(); ?>
         <!-- <section class="section section--bg-light section--stretched-content undefined">
             <div class="portfolio__iner">
                 <div class="portfolio__categories-iner">
