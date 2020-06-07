@@ -1,5 +1,5 @@
 <?php 
-add_theme_support( 'post-thumbnails', array( 'page', 'project' ) );  
+add_theme_support( 'post-thumbnails', array( 'page', 'project', 'post' ) );  
 
 function eleg_style() {
 	wp_enqueue_style(
@@ -23,47 +23,65 @@ function theme_register_nav_menu() {
 
 function register_post_types(){
 	register_post_type( 'project', [
-		'label'  => 'Нашы проекты',
+		'label'  => 'Наши  проекты',
 		'labels' => [
-			'name'               => 'Нашы проекты', // основное название для типа записи
-			'singular_name'      => 'Проект', // название для одной записи этого типа
-			'add_new'            => 'Добавить проект', // для добавления новой записи
-			'add_new_item'       => 'Добавление проекта', // заголовка у вновь создаваемой записи в админ-панели.
-			'edit_item'          => 'Редактирование проекта', // для редактирования типа записи
-			'new_item'           => 'Новое ____', // текст новой записи
-			'view_item'          => 'Смотреть ____', // для просмотра записи этого типа.
-			'search_items'       => 'Искать ____', // для поиска по этим типам записи
-			'not_found'          => 'Не найдено', // если в результате поиска ничего не было найдено
-			'not_found_in_trash' => 'Не найдено в корзине', // если не было найдено в корзине
-			'parent_item_colon'  => '', // для родителей (у древовидных типов)
-			'menu_name'          => 'Нашы проекты', // название меню
+			'name'               => 'Наши  проекты',
+			'singular_name'      => 'Проект',
+			'add_new'            => 'Добавить проект',
+			'add_new_item'       => 'Добавление проекта',
+			'edit_item'          => 'Редактирование проекта',
+			'new_item'           => 'Добавить',
+			'view_item'          => 'Просмотреть',
+			'search_items'       => 'Поиск по проектах',
+			'not_found'          => 'Не найдено',
+			'not_found_in_trash' => 'Не найдено в корзине',
+			'menu_name'          => 'Наши  проекты',
 		],
 		'description'         => '',
 		'public'              => true,
-		// 'publicly_queryable'  => null, // зависит от public
-		// 'exclude_from_search' => null, // зависит от public
-		// 'show_ui'             => null, // зависит от public
-		// 'show_in_nav_menus'   => null, // зависит от public
-        'show_in_menu'        => true, // показывать ли в меню адмнки
+        'show_in_menu'        => true,
         'menu_position'       => '2-3',
         'menu_icon'           => 'dashicons-images-alt',
-
-		// 'show_in_admin_bar'   => null, // зависит от show_in_menu
-		'show_in_rest'        => true, // добавить в REST API. C WP 4.7
-		'rest_base'           => null, // $post_type. C WP 4.7
-		// 'menu_position'       => null,
-		// 'menu_icon'           => null,
-		//'capability_type'   => 'post',
-		//'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
-		//'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
+		'show_in_rest'        => true,
+		'rest_base'           => null, 
 		'hierarchical'        => false,
-		'supports'            => [ 'title', 'editor', 'thumbnail', 'excerpt' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-		'taxonomies'          => [ 'projects' ],
+		'supports'            => [ 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+		'taxonomies'          => ['projects'],
 		'has_archive'         => true,
 		'rewrite'             => true,
 		'query_var'           => true,
 		'publicly_queryable'  => true,
 		'permalink_epmask' 	  => 'EP_ALL'
+	] );
+	register_post_type( 'service', [
+		'label'  => 'Наши услуги',
+		'labels' => [
+			'name'               => 'Наши услуги',
+			'singular_name'      => 'Услуга',
+			'add_new'            => 'Добавить услугу',
+			'add_new_item'       => 'Добавление услуги',
+			'edit_item'          => 'Редактирование услуги',
+			'new_item'           => 'Добавить',
+			'view_item'          => 'Просмотреть',
+			'search_items'       => 'Поиск по услугах',
+			'not_found'          => 'Не найдено',
+			'not_found_in_trash' => 'Не найдено в корзине',
+			'menu_name'          => 'Наши услуги',
+		],
+		'description'         => '',
+		'public'              => true,
+        'show_in_menu'        => true,
+        'menu_position'       => '2-3',
+        'menu_icon'           => 'dashicons-admin-generic',
+		'show_in_rest'        => true,
+		'rest_base'           => null, 
+		'hierarchical'        => false,
+		'supports'            => [ 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+		'taxonomies'          => null,
+		'has_archive'         => true,
+		'rewrite'             => true,
+		'query_var'           => true,
+		'publicly_queryable'  => true,
 	] );
 }
 add_action( 'init', 'register_post_types' );
@@ -71,53 +89,69 @@ add_action( 'init', 'register_post_types' );
 
 add_action( 'init', 'create_taxonomy' );
 function create_taxonomy(){
-
-	// список параметров: wp-kama.ru/function/get_taxonomy_labels
 	register_taxonomy( 'projects', [ 'project' ], [ 
-		'label'                 => 'Типы проектов', // определяется параметром $labels->name
+		'label'                 => 'Типы проектов', 
 		'labels'                => [
 			'name'              => 'Тыпы проектов',
-			'singular_name'     => 'Genre',
-			'search_items'      => 'Search Genres',
-			'all_items'         => 'All Genres',
-			'view_item '        => 'View Genre',
-			'parent_item'       => 'Parent Genre',
-			'parent_item_colon' => 'Parent Genre:',
-			'edit_item'         => 'Edit Genre',
-			'update_item'       => 'Update Genre',
+			'singular_name'     => 'Тип проекта',
+			'search_items'      => 'Поиск по типах проектов',
+			'all_items'         => 'Все типы проектов',
+			'view_item '        => 'Просмотреть',
+			'edit_item'         => 'Редактировать',
+			'update_item'       => 'Обновить',
 			'add_new_item'      => 'Добавить',
-			'new_item_name'     => 'New Genre Name',
+			'new_item_name'     => 'Добавить',
 			'menu_name'         => 'Типы проектов',
 		],
-		'description'           => '', // описание таксономии
+		'description'           => '',
 		'public'                => true,
-		// 'publicly_queryable'    => null, // равен аргументу public
-		// 'show_in_nav_menus'     => true, // равен аргументу public
-		// 'show_ui'               => true, // равен аргументу public
-		// 'show_in_menu'          => true, // равен аргументу show_ui
-		// 'show_tagcloud'         => true, // равен аргументу show_ui
-		// 'show_in_quick_edit'    => null, // равен аргументу show_ui
 		'hierarchical'          => false,
-
 		'rewrite'               => array( 'slug' => 'projects' ),
 		'sort'				    => true,
 		'query_var'             => false, // название параметра запроса
 		'capabilities'          => array(),
 		'meta_box_cb'           => 'post_categories_meta_box', // html метабокса. callback: `post_categories_meta_box` или `post_tags_meta_box`. false — метабокс отключен.
-		'show_admin_column'     => false, // авто-создание колонки таксы в таблице ассоциированного типа записи. (с версии 3.5)
-		'show_in_rest'          => null, // добавить в REST API
-		'rest_base'             => null, // $taxonomy
-		// '_builtin'              => false,
-		//'update_count_callback' => '_update_post_term_count',
+		'show_admin_column'     => false, 
+		'show_in_rest'          => true,
+		'rest_base'             => null
 	] );
 }
 
+function eleg_get_post_nav_iner( $post, $postLinkNext, $postLinkPrevious){
 
-// свой класс построения меню:
+	$posts = get_posts( array(
+		'post_type' => $post->post_type
+	) );
+	$postCount = count( $posts );
+	if( $postCount < 10){
+		$postCount = '0' . $postCount;
+	}
+	$postCurrent = 0;
+
+	for($index = 0; $index < $postCount; $index++){
+		if ( $posts[$index]->ID == $post->ID ){
+			$postCurrent = $index + 1;
+			break;
+		}
+	} 
+	$output  = '<div class="project-header__nav-iner">';
+	$output .= '<div class="progress progress--light">';
+	$output .= '<p class="progress__num"> 01 </p>';
+	$output .= '<div class="progress__bar"> <i style="width: ' . $postCurrent / $postCount  * 100 . '%"></i></div>';
+	$output .= '<p class="progress__num">' . $postCount . '</p>';
+	$output .= '</div><div class="angle-nav">';
+    $output .= $postLinkNext;
+    $output .= '<span> 0' .  $postCurrent . ' / ' . $postCount . ' </span>';
+	$output .= $postLinkPrevious;
+	$output .= '</div> </div> ';
+
+
+	return $output;
+}
 class eleg_walker_nav_menu extends Walker_Nav_Menu {
 
 	// add classes to ul sub-menus
-	function start_lvl( &$output, $depth ) {
+	function start_lvl( &$output, $depth = 0, $args = NULL ) {
 		// depth dependent classes
 		$indent = ( $depth > 0  ? str_repeat( "\t", $depth ) : '' ); // code indent
 		$display_depth = ( $depth + 1); // because it counts the first submenu as 0
@@ -134,10 +168,10 @@ class eleg_walker_nav_menu extends Walker_Nav_Menu {
 	}
 
 	// add main/sub classes to li's and links
-	function start_el( &$output, $item, $depth, $args ) {
+	function start_el( &$output, $item, $depth = 0, $args = NULL, $id = 0 ) {
 		global $wp_query;
 		$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
-
+		$class_names = "";
 		// depth dependent classes
 		$depth_classes = array(
 			( $depth == 0 ? 'main-menu-item' : 'sub-menu-item' ),
@@ -175,22 +209,3 @@ class eleg_walker_nav_menu extends Walker_Nav_Menu {
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 	}
 }
-
-// // И там, где нужно выводим меню так:
-// function magomra_nav_menu( $menu_id ) {
-// 	// main navigation menu
-// 	$args = array(
-// 		'theme_location'    => 'navigation_menu_primary',
-// 		'container'     => 'div',
-// 		'container_id'      => 'top-navigation-primary',
-// 		'container_class'   => 'top-navigation',
-// 		'menu_class'        => 'menu main-menu menu-depth-0 menu-even', 
-// 		'echo'          => true,
-// 		'items_wrap'        => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-// 		'depth'         => 10, 
-// 		'walker'        => new magomra_walker_nav_menu
-// 	);
-
-// 	// print menu
-// 	wp_nav_menu( $args );
-// }
