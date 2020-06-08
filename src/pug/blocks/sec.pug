@@ -1,4 +1,5 @@
 include ../elements/section-nav-iner
+include ../elements/img
 
 mixin section(size= '', number= '00', type= '', bgImage= '', isStretchedContent= false)
     - var sectionClass = 'section'
@@ -19,11 +20,13 @@ mixin section(size= '', number= '00', type= '', bgImage= '', isStretchedContent=
     if isStretchedContent
         - sectionClass += ' section--stretched-content'
         
-    if bgImage
-        - var sectionImage = 'background-image: url(\'' +  bgImage + '\')'
+    //- if bgImage
+    //-     - var sectionImage = 'background-image: url(\'' +  bgImage + '\')'
 
     - sectionClass += ' ' + attributes.class
 
-    section(class= sectionClass style = sectionImage)
+    section(class= sectionClass)
+        if(bgImage)
+            +img(bgImage).section__bg-image
         block
         +section-nav-iner(number)

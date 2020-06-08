@@ -36,7 +36,8 @@ class PageScroll{
 
         this.pageSections.forEach(sec => {
             let navIner = sec.html.querySelector('.section__nav-iner');
-            navIner.classList.toggle('section__nav-iner--hidden');
+            if(navIner)
+                navIner.classList.toggle('section__nav-iner--hidden');
         })
     }
 
@@ -77,8 +78,6 @@ class PageScroll{
 
         let scrollNav = document.querySelector('.page-scroll__nav');
         this.scrollNavItems.forEach(item => scrollNav.appendChild(item));
-
-
     }
 
     generateScrollNavItem(secIndex){
@@ -102,7 +101,7 @@ class PageScroll{
             return;
         this.blockScroll();
         let newActiveSection = this.getCurrentSection();
-        if(newActiveSection && this.activeSection != newActiveSection)
+        if(newActiveSection != undefined && this.activeSection != newActiveSection)
             this.changeActiveSection(newActiveSection);
         
         console.log(newActiveSection);
