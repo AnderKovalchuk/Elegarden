@@ -1,7 +1,7 @@
 include angle-line
 
 mixin angle-nav(start, end, isLight= '')
-    .angle-nav
+    .angle-nav(class!= attributes.class)
         a(href="#")
             +angle-line--right(isLight)
         span 01 / 06
