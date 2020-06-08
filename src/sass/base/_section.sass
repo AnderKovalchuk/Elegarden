@@ -21,6 +21,23 @@
             visibility: hidden
     &__nav-number
         margin-right: 0.5em
+    &__bg-image
+        position: absolute
+        left: 0
+        right: 0
+        bottom: 0
+        top: 0
+        z-index: 1 !important
+        &::before
+            content: ''
+            position: absolute
+            width: 100%
+            height: 100%
+            background-color: rgba(#343434, 0.7)
+        img
+            object-fit: cover
+            width: 100%
+            height: 100%
 
     &--full-height
         padding: 3em 0
@@ -45,9 +62,12 @@
         padding-top: 100px !important
         +l-phone(padding, 100px 0 6em !important)
     &--bg-image
+        position: relative
         background-size: cover
         background-position: center
         color: $light-text-color
+        > *
+            z-index: 2
         .section__nav-iner
             color: $light-text-color
             .angle-line, .angle-line::after

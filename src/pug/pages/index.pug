@@ -18,7 +18,7 @@ block variables
 
 block main-content
 
-    +section('f', '01', 'image', 'img/home_bg.jpg', true).home-header
+    +section('f', '01', 'image', 'img/n_bg_1.jpg', true).home-header
         +container().home-header__iner
             +title('h1', 'ELEGARDEN')
                 p Создадим красивый и функциональный сад за 60 дней
@@ -39,22 +39,36 @@ block main-content
                     p Ландшафтная компания Elegarden создана для того, чтобы идея Вашего сада стала реальностью. Идею сада и озеленения создают заранее, до наступления весеннего тепла - обсуждают детали, формируют пожелания, наблюдать за тем, как мечта о саде обретает чёткие очертания.
                     +angle-link('Узнать больше о нас ', '/who-are-we.html')
     +section('', '03', 'light', '', true)
-        .portfolio__iner
+        .portfolio__iner.slider
             .portfolio__categories-iner
                 +categories()
-            .portfolio__title-iner
-                p.portfolio__sub-title Частный сад
-                .portfolio__title 
-                    p.portfolio__title-num 01
-                    h3 Мурманск
-            .portfolio__description
-                p Площадь: #[span 16 соток]
-                p Город: #[span Москвовская область]
-                +angle-link('Смотреть проект ', '/project.html')
+            .portfolio__title-iner.slider__title-iner
+                .slider__title.active
+                    p.portfolio__sub-title Частный сад
+                    .portfolio__title 
+                        p.portfolio__title-num 01
+                        h3 Мурманск
+                .slider__title
+                    p.portfolio__sub-title Частный сад
+                    .portfolio__title 
+                        p.portfolio__title-num 02
+                        h3 Вершки
+            .portfolio__description.slider__description-iner
+                .slider__description.active
+                    p Площадь: #[span 16 соток]
+                    p Город: #[span Москвовская область]
+                    +angle-link('Смотреть проект ', '/project.html')
+                .slider__description
+                    p Площадь: #[span 10 соток]
+                    p Город: #[span Москвовская область]
+                    +angle-link('Смотреть проект ', '/project.html')
 
             .portfolio__nav-iner
-                +progress('01', '06')
-                +angle-nav('01', '06')
-            .portfolio__image
-                figure
-                    img(src="img/portfolio_img_1.jpg" alt="")
+                +progress('00', '00').slider__progress
+                +angle-nav('00', '00').slider__nav
+            .portfolio__image.slider__items-iner
+                .slider__items
+                    figure
+                        img(src="img/portfolio_img_1.jpg" alt="")
+                    figure
+                        img(src="img/home_bg.jpg" alt="")
