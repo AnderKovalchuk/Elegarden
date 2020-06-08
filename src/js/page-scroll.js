@@ -100,7 +100,6 @@ class PageScroll{
             return;
         this.blockScroll();
         let newActiveSection = this.getCurrentSection();
-        if(newActiveSection && this.activeSection != newActiveSection)
         if(newActiveSection != undefined && this.activeSection != newActiveSection)
             this.changeActiveSection(newActiveSection);
         
