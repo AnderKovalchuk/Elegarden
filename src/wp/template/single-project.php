@@ -7,7 +7,10 @@
         $headerImage = get_template_directory_uri() . '/img/header_picture_stub.jpg';
     endif; ?>
 
-    <section class="section section--full-height section--bg-image undefined" style="background-image: url('<?php echo $headerImage; ?>')">
+    <section class="section section--full-height section--bg-image">
+        <figure class="img--with-fill section__bg-image">
+            <img src="<?php echo $headerImage; ?>" alt="<?php the_title(); ?>" />
+        </figure>
         <div class="container project-header__iner">
             <div class="title title__iner undefined">
                 <h2 class="title--like-h1"><?php the_title(); ?></h2>

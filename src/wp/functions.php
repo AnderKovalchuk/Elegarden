@@ -1,18 +1,20 @@
 <?php 
-add_theme_support( 'post-thumbnails', array( 'page', 'project', 'service', 'post' ) );  
+add_theme_support( 'post-thumbnails', array( 'page', 'project', 'service', 'post' ) );
+
 require get_template_directory() . '/inc/create-structure.php';
+require get_template_directory() . '/inc/generate-portfolio.php';
 
 
 function eleg_style() {
 	wp_enqueue_style(
         'elegardneb-template-style',
-        get_template_directory_uri() . '/css/main.css?v1' );
+        get_template_directory_uri() . '/css/main.css?v3' );
 }
 
 function eleg_script() {
     wp_enqueue_script( 
         'elegardneb-template-script', 
-		get_template_directory_uri() . '/js/main.js?v1', '1', true );
+		get_template_directory_uri() . '/js/main.js?v3', '1', true );
 }
 
 add_action( 'wp_print_styles', 'eleg_style' );
@@ -41,7 +43,12 @@ function eleg_get_post_nav_iner( $post, $postLinkNext, $postLinkPrevious){
 			$postCurrent = $index + 1;
 			break;
 		}
-	} 
+	}
+	if(!$postLinkNext)
+		$postLinkNext = '<a> <i class="angle-line angle-line--right angle-line--light angle-line--inactive"></i> </a>';
+	if(!$postLinkPrevious)
+		$postLinkPrevious = '<a> <i class="angle-line angle-line--left angle-line--light angle-line--inactive"></i> </a>';
+
 	$output  = '<div class="project-header__nav-iner">';
 	$output .= '<div class="progress progress--light">';
 	$output .= '<p class="progress__num"> 01 </p>';

@@ -26,7 +26,7 @@ function eleg_register_post_types(){
 		'show_in_rest'        => true,
 		'rest_base'           => null, 
 		'hierarchical'        => false,
-		'supports'            => [ 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+		'supports'            => [ 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes', 'custom-fields' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
 		'taxonomies'          => ['projects'],
 		'has_archive'         => true,
 		'rewrite'             => true,
@@ -34,6 +34,7 @@ function eleg_register_post_types(){
 		'publicly_queryable'  => true,
 		'permalink_epmask' 	  => 'EP_ALL'
 	] );
+
 	register_post_type( 'service', [
 		'label'  => 'Наши услуги',
 		'labels' => [
