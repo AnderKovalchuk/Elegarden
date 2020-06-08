@@ -4,6 +4,7 @@ window.addEventListener('load', (e) => {
     let pageScroll = new PageScroll();
     if(document.documentElement.clientWidth > 768)
         initPageScroll(pageScroll);
+    let slider = new Slaier();
 });
 
 function initPageScroll(pageScroll){

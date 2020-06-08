@@ -1,12 +1,14 @@
 mixin progress(start, end, isLight= '')
     if isLight
-        .progress.progress--light
+        .progress.progress--light(class!= attributes.class)
             p.progress__num= start
             .progress__bar
+                i
             p.progress__num= end
     else
-        .progress
+        .progress(class!= attributes.class)
             p.progress__num= start
             .progress__bar
+                i
             p.progress__num= end
 
