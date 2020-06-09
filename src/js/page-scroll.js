@@ -9,6 +9,8 @@ class PageScroll{
     clientBrowserHeight = 0;
 
     isActiveScroll = false;
+    
+    hr = null;
 
     constructor(){
         this.pageScrollMenu = 
@@ -22,12 +24,18 @@ class PageScroll{
 
         this.initPageSections();
         this.initStaticScroll();
-
         this.currentClientTopScroll = window.pageYOffset;
         this.clientBrowserHeight = document.documentElement.clientHeight;
 
-        this.changeActiveSection(this.getCurrentSection());
-        console.log(this.getCurrentSection());
+        // this.hr = document.createElement('hr');
+        // this.hr.style.position = 'fixed';
+        // this.hr.style.width = '100%';
+        // this.hr.style.height = '1px';
+        // this.hr.style.top = '50%';
+        // document.body.appendChild(this.hr);
+
+        this.changeActiveSection(
+            this.initCurrentSection());
     }
 
     activePageScrollMenu(){
@@ -41,6 +49,7 @@ class PageScroll{
         })
     }
 
+    /* Инициализация внутренего обекта для управления секциями */
     initPageSections(){
         let sections = document.querySelectorAll('.section');
         for(let i = 0; i < sections.length; i++){
@@ -79,7 +88,7 @@ class PageScroll{
         let scrollNav = document.querySelector('.page-scroll__nav');
         this.scrollNavItems.forEach(item => scrollNav.appendChild(item));
     }
-
+    /* Генерирование и вывод элемента навигации между секциями */
     generateScrollNavItem(secIndex){
         let li = document.createElement('li');
         let a = document.createElement('a');
@@ -95,6 +104,16 @@ class PageScroll{
 
         return li;
     }
+    initCurrentSection(){
+        const scrinCenter = this.currentClientTopScroll + this.clientBrowserHeight / 2;
+        for(let i = 0; i < this.pageSections.length; i++ ){
+            const sec = this.pageSections[i];
+            if( sec.topPosition < scrinCenter && sec.topPosition + sec.height >= scrinCenter)
+                return(i);
+        }
+        return 0;
+    }
+
 
     scrollFollower(){
         if(this.isActiveScroll)
@@ -103,52 +122,12 @@ class PageScroll{
         let newActiveSection = this.getCurrentSection();
         if(newActiveSection != undefined && this.activeSection != newActiveSection)
             this.changeActiveSection(newActiveSection);
-        
-        console.log(newActiveSection);
-
-        // console.log(this.isAvailableScrollJump());
-
-        // if(this.isTopScroll() && this.isAvailableScrollJump(true))
-        //     this.moveToPreviousSection();
-        // else if (this.isAvailableScrollJump())
-        //     this.moveToNextSection(false);
-    }
-    moveToActiveSection(){
-        let sec = this.pageSections[this.activeSection];
-        let pozition = 0;
-        if(sec.height <= this.clientBrowserHeight ){
-            pozition = sec.topPosition - ((this.clientBrowserHeight - sec.height) / 2);
-            console.log(sec.topPosition + ' ::: ' + pozition);
-        } else {
-            pozition = sec.topPosition;
-        }
-        window.scrollTo(0, pozition);
-    }
-    moveToNextSection(isJumpingToTop = true){
-        if(this.activeSection < this.pageSections.length - 1){
-            this.changeActiveSection(this.activeSection + 1);
-            window.scrollTo(0, 
-                this.pageSections[this.activeSection].topPosition);
-                this.blockScroll();
-        } else if(isJumpingToTop) {
-            this.changeActiveSection(0);
-            window.scrollTo(0, 0);
-            this.blockScroll();
-        }
-    }
-    moveToPreviousSection(){
-        if(this.activeSection <= 0)
-            return;
-            
-        this.changeActiveSection(this.activeSection - 1);
-        window.scrollTo(0, 
-            this.pageSections[this.activeSection].topPosition);
-        this.blockScroll();
     }
 
     changeActiveSection(secIndex){
         this.changeNavStyle( this.pageSections[secIndex].type == 'image' );
-        this.scrollNavItems[this.activeSection].classList.remove('active');
+        if(this.activeSection != undefined)
+            this.scrollNavItems[this.activeSection].classList.remove('active');
         this.scrollNavItems[secIndex].classList.add('active');
 
         let numEl = this.pageScrollMenu.querySelector('.page-scroll__screen-number');
@@ -167,59 +146,22 @@ class PageScroll{
     }
 
     getCurrentSection(){
-        if(window.pageYOffset == 0)
-            return 0;
-        if(window.pageYOffset + this.clientBrowserHeight == document.documentElement.offsetHeight)
-            return this.pageSections.length - 1;
-        let scrinCenter = (this.clientBrowserHeight / 2) + window.pageYOffset;
-        let secPosTop = scrinCenter - this.clientBrowserHeight / 3;
-        let secPosBut = scrinCenter + this.clientBrowserHeight / 3;
-        for(let i = 0; i < this.pageSections.length; i++ ){
-            const sec = this.pageSections[i];
-            if( secPosTop < (sec.height / 2) + sec.topPosition  && 
-                (sec.height / 2) + sec.topPosition < secPosBut )
-                    return i
+        const scrinCenter = this.currentClientTopScroll + this.clientBrowserHeight / 2;
+        if(this.isTopScroll()){
+            for(let i = this.pageSections.length - 1; i >= 0; i-- ){
+                const sec = this.pageSections[i];
+                if( sec.topPosition < scrinCenter && sec.topPosition + sec.height >= scrinCenter)
+                    return(i);
+            }
+        } 
+        else{
+            for(let i = 0; i < this.pageSections.length; i++ ){
+                const sec = this.pageSections[i];
+                if( sec.topPosition < scrinCenter && sec.topPosition + sec.height >= scrinCenter)
+                    return(i);
+            }
         }
-
-        // const coe = this.clientBrowserWidth > 2000 ? 3 : 2; 
-        // if(this.isTopScroll()){
-        //     for(let i = 0; i < this.pageSections.length; i++ ){
-        //         const sec = this.pageSections[i];
-        //         if( this.currentClientTopScroll > (sec.topPosition - this.clientBrowserHeight / coe) &&
-        //             this.currentClientTopScroll < 
-        //                 (sec.topPosition + sec.height - this.clientBrowserHeight / coe))
-        //                     return(i);
-        //     }
-        // } else {
-        //     for(let i = this.pageSections.length - 1 ; i >= 0; i-- ){
-        //         const sec = this.pageSections[i];
-        //         if( this.currentClientTopScroll > (sec.topPosition - this.clientBrowserHeight / coe) &&
-        //             this.currentClientTopScroll < 
-        //                 (sec.topPosition + sec.height - this.clientBrowserHeight / coe))
-        //                     return(i);
-        //     }
-        // }
-        
     }
-
-    isAvailableScrollJump(isTopScroll){
-        console.log('done');
-        if(this.pageSections[this.activeSection].height <= this.clientBrowserHeight)
-            return true;
-
-        if(isTopScroll){
-            if(this.pageSections[this.activeSection].topPosition > window.pageYOffset) 
-                return true;
-            return false;
-        } else {
-            const nextSec = this.pageSections[this.activeSection + 1];
-            if(window.pageYOffset + (this.clientBrowserHeight / 1.5) > nextSec.topPosition)
-                return true;
-            return false;
-        }
-        return false;
-    }
-
     isTopScroll() {
         if(this.currentClientTopScroll >= window.pageYOffset)
             return true;
@@ -230,11 +172,9 @@ class PageScroll{
         if(this.isActiveScroll)
             return;
         this.isActiveScroll = true;
-        //console.log('block');
         setTimeout(() => {
             this.isActiveScroll = false;
             this.currentClientTopScroll = window.pageYOffset;
-            //console.log('actine')
-        }, 100);
+        }, 200);
     }
 }

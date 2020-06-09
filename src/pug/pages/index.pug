@@ -54,14 +54,15 @@ block main-content
                         p.portfolio__title-num 02
                         h3 Вершки
             .portfolio__description.slider__description-iner
-                .slider__description.active
-                    p Площадь: #[span 16 соток]
-                    p Город: #[span Москвовская область]
-                    +angle-link('Смотреть проект ', '/project.html')
-                .slider__description
-                    p Площадь: #[span 10 соток]
-                    p Город: #[span Москвовская область]
-                    +angle-link('Смотреть проект ', '/project.html')
+                div
+                    .slider__description.active
+                        p Площадь: #[span 16 соток]
+                        p Город: #[span Москвовская область]
+                        +angle-link('Смотреть проект ', '/project.html')
+                    .slider__description
+                        p Площадь: #[span 10 соток]
+                        p Город: #[span Москвовская область]
+                        +angle-link('Смотреть проект ', '/project.html')
 
             .portfolio__nav-iner
                 +progress('00', '00').slider__progress
