@@ -97,7 +97,7 @@ class PageScroll{
         a.addEventListener('click', (e) =>{
             e.preventDefault();
             this.changeActiveSection(secIndex);
-            this.moveToActiveSection();
+            this.moveToSection(secIndex);
             this.blockScroll();
         })
         li.appendChild(a)
@@ -118,10 +118,15 @@ class PageScroll{
     scrollFollower(){
         if(this.isActiveScroll)
             return;
-        this.blockScroll();
-        let newActiveSection = this.getCurrentSection();
-        if(newActiveSection != undefined && this.activeSection != newActiveSection)
-            this.changeActiveSection(newActiveSection);
+        this.isActiveScroll = true;
+        setTimeout(() => {
+            let newActiveSection = this.getCurrentSection();
+            if(newActiveSection != undefined && this.activeSection != newActiveSection)
+                this.changeActiveSection(newActiveSection);
+
+            this.currentClientTopScroll = window.pageYOffset;
+            this.isActiveScroll = false;
+        }, 50)
     }
 
     changeActiveSection(secIndex){
@@ -147,34 +152,55 @@ class PageScroll{
 
     getCurrentSection(){
         const scrinCenter = this.currentClientTopScroll + this.clientBrowserHeight / 2;
+        console.log('Top? : ' + this.isTopScroll());
+
         if(this.isTopScroll()){
-            for(let i = this.pageSections.length - 1; i >= 0; i-- ){
+            for(let i = 0; i < this.pageSections.length; i++ ){
                 const sec = this.pageSections[i];
                 if( sec.topPosition < scrinCenter && sec.topPosition + sec.height >= scrinCenter)
                     return(i);
             }
         } 
         else{
-            for(let i = 0; i < this.pageSections.length; i++ ){
+            if(window.pageYOffset + this.clientBrowserHeight >= document.documentElement.scrollHeight)
+                return this.pageSections.length - 1;
+            for(let i = this.pageSections.length - 1; i >= 0; i-- ){
                 const sec = this.pageSections[i];
                 if( sec.topPosition < scrinCenter && sec.topPosition + sec.height >= scrinCenter)
                     return(i);
             }
         }
     }
+
+    moveToSection(index){
+        if(index >= this.pageSections.length || index < 0 || index == undefined)
+            return;
+
+        const sec = this.pageSections[index];
+        this.blockScroll(1000);
+        console.log(sec.height + " ::: " + this.clientBrowserHeight)
+        if(sec.height >= this.clientBrowserHeight){
+            window.scrollTo(0, sec.topPosition);
+        } else {
+            const pos = sec.topPosition - (this.clientBrowserHeight - sec.height) / 2
+            window.scrollTo(0, pos);
+        }
+        
+    }
+
     isTopScroll() {
         if(this.currentClientTopScroll >= window.pageYOffset)
             return true;
         return false;
     }
 
-    blockScroll(){
+    blockScroll(time = 200){
         if(this.isActiveScroll)
             return;
         this.isActiveScroll = true;
         setTimeout(() => {
             this.isActiveScroll = false;
             this.currentClientTopScroll = window.pageYOffset;
-        }, 200);
+        }, time);
     }
 }
