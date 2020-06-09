@@ -35,7 +35,7 @@ class PageScroll{
         // document.body.appendChild(this.hr);
 
         this.changeActiveSection(
-            this.initCurrentSection());
+            this.getCurrentSection());
     }
 
     activePageScrollMenu(){
@@ -104,15 +104,6 @@ class PageScroll{
 
         return li;
     }
-    initCurrentSection(){
-        const scrinCenter = this.currentClientTopScroll + this.clientBrowserHeight / 2;
-        for(let i = 0; i < this.pageSections.length; i++ ){
-            const sec = this.pageSections[i];
-            if( sec.topPosition < scrinCenter && sec.topPosition + sec.height >= scrinCenter)
-                return(i);
-        }
-        return 0;
-    }
 
 
     scrollFollower(){
@@ -151,13 +142,12 @@ class PageScroll{
     }
 
     getCurrentSection(){
-        const scrinCenter = this.currentClientTopScroll + this.clientBrowserHeight / 2;
-        console.log('Top? : ' + this.isTopScroll());
-
+        const scrinCenter = window.pageYOffset + this.clientBrowserHeight / 2;
+        const sizeRatio = this.clientBrowserHeight / 4;
         if(this.isTopScroll()){
             for(let i = 0; i < this.pageSections.length; i++ ){
                 const sec = this.pageSections[i];
-                if( sec.topPosition < scrinCenter && sec.topPosition + sec.height >= scrinCenter)
+                if( sec.topPosition < scrinCenter && sec.topPosition + sec.height >= scrinCenter + sizeRatio)
                     return(i);
             }
         } 
@@ -166,7 +156,7 @@ class PageScroll{
                 return this.pageSections.length - 1;
             for(let i = this.pageSections.length - 1; i >= 0; i-- ){
                 const sec = this.pageSections[i];
-                if( sec.topPosition < scrinCenter && sec.topPosition + sec.height >= scrinCenter)
+                if( sec.topPosition < scrinCenter - sizeRatio && sec.topPosition + sec.height >= scrinCenter)
                     return(i);
             }
         }
