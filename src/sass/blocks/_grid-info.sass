@@ -2,7 +2,8 @@
     &__iner
         display: grid
         grid-template-columns: 1fr 1fr
-        gap: 20vh 10vw
+        gap: 10vh 10vw
+        +l-digDesktop(gap, 20vh 10vw)
         +m-table()
             grid-template-columns: 1fr
             gap: 1em

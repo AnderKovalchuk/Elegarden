@@ -1,18 +1,44 @@
+@mixin m-digDesktop()
+    @media screen and (max-width: $big-desktop-width)
+        @content
+
 @mixin m-desktop()
     @media screen and (max-width: $desktop-width)
         @content
+
 @mixin m-smDesktop()
     @media screen and (max-width: $sm-desktop-width)
         @content
 
 @mixin m-table()
-    @media screen and (max-width: $table-width)
+    @media screen and (max-width: $table-width) and (min-height: 400px)
         @content
 
 @mixin m-phone()
-    @media screen and (max-width: $phone-width)
+    @media screen and (max-width: $phone-width), (max-height: 399px)
         @content
 
 @mixin m-min-table()
     @media screen and (min-width: $table-width)
         @content
+
+
+@mixin l-digDesktop($name, $value)
+    @media screen and (max-width: $big-desktop-width)
+        #{$name}: $value
+
+@mixin l-desktop($name, $value)
+    @media screen and (max-width: $desktop-width)
+        #{$name}: $value
+
+@mixin l-smDesktop($name, $value)
+    @media screen and (max-width: $sm-desktop-width)
+        #{$name}: $value
+
+@mixin l-table($name, $value)
+    @media screen and (max-width: $table-width) and (min-height: 400px)
+        #{$name}: $value
+
+@mixin l-phone($name, $value)
+    @media screen and (max-width: $phone-width), (max-height: 399px)
+        #{$name}: $value

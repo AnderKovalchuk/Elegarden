@@ -1,9 +1,10 @@
-window.addEventListener('load', () => {
+window.addEventListener('load', (e) => {
     menuToggle();
 
     let pageScroll = new PageScroll();
     if(document.documentElement.clientWidth > 768)
         initPageScroll(pageScroll);
+    let slider = new Slaier();
 });
 
 function initPageScroll(pageScroll){

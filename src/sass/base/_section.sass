@@ -1,46 +1,79 @@
 .section
     position: relative
-    padding: 3em 0
+    display: flex
+    flex-direction: row
+    align-items: center
+    padding: 6em 0
     font-size: 1rem
-    +m-phone()
-        padding: 3em 0 5em 0
-    &--full-height
-        display: flex
-        align-items: center
-        min-height: 100vh
-    &--no-padding
-        padding: 0
-    &--bg-image
-        background-size: cover
-        background-position: center
-        color: $light-text-color
-    &--bg-light
-        background-color: $light-bg-color
-
-    &__title
-        font-family: $main-font
-        font-weight: 300
-        font-size: 5em
-        text-transform: uppercase
+    +l-digDesktop(padding, 3em 0)
+    +l-phone(padding-bottom, 4em)
     &__nav-iner
         position: absolute
-        left: $d-calc-container-pozition
-        bottom: 3em
+        bottom: 2em
         display: flex
         cursor: pointer
         color: $main-color
         text-decoration: none
         transition: all 1s ease-out
-        &--light
+        +indent-container-horizontal()
+        +l-phone(bottom, 1em)
+        &--hidden
+            visibility: hidden
+    &__nav-number
+        margin-right: 0.5em
+    &__bg-image
+        position: absolute
+        left: 0
+        right: 0
+        bottom: 0
+        top: 0
+        z-index: 1 !important
+        &::before
+            content: ''
+            position: absolute
+            width: 100%
+            height: 100%
+            background-color: #000000
+            background-image: radial-gradient(circle at center, #353434, #000000)
+            opacity: .6
+        img
+            object-fit: cover
+            width: 100%
+            height: 100%
+
+    &--full-height
+        padding: 3em 0
+        min-height: 100vh
+    &--big
+        min-height: 1000px
+        padding: 6em 0
+        +l-digDesktop(min-height, 100vh)
+    &--medium
+        padding: 6em 0
+    &--home-section
+        height: 80vh
+        max-height: 1500px
+        +m-digDesktop()
+            min-height: 100vh
+            height: max-content
+        +l-phone(padding, 3em 0 5em)
+    &--stretched-content
+        padding: 0 !important
+        justify-content: stretch
+    &--header
+        padding-top: 100px !important
+        +l-phone(padding, 100px 0 6em !important)
+    &--bg-image
+        position: relative
+        background-size: cover
+        background-position: center
+        color: $light-text-color
+        > *
+            z-index: 2
+        .section__nav-iner
             color: $light-text-color
             .angle-line, .angle-line::after
                 background-color: $light-text-color
-        &--hidden
-            visibility: hidden
-            opacity: 0
-        +m-desktop()  
-            left: $t-calc-container-pozition
-        +m-phone()
-            bottom: 1em
-    &__nav-number
-        margin-right: 0.5em
+    &--bg-light
+        background-color: $light-bg-color
+

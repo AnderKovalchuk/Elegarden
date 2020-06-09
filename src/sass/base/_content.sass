@@ -1,26 +1,27 @@
 .content
     display: flex
-    padding-left: 9vw
-    padding-right: 9vw
-    +m-table()
-        padding-left: 0
-        padding-right: 0
+    //width: 80%
+    //margin: 0 auto
+    //+l-digDesktop(width, 100%)
     &--mob-wrap
-        +m-phone()
-            flex-wrap: wrap
+        +l-phone(flex-wrap, wrap)
+
     &--no-right
         padding-right: 0
     &--full-height
         align-self: stretch
+    &--always--full
+        width: 100%
     &__title
-        margin-bottom: 2em
+        margin-bottom: 1.5em
+        +l-digDesktop(margin-bottom, 1em)
         &--left
             position: relative
             display: flex
             flex-shrink: 0
             align-items: flex-start
             justify-content: center
-            width: 9vw
+            width: 5em
             margin-right: 2em
             margin-bottom: 0
             > *
@@ -29,15 +30,20 @@
                 transform: rotate(-90deg) translateX(-41%)
                 color: $help-text-color
             +m-phone()
+                width: 3em
                 margin-right: 15px
+                
     &__addition-block
-        width: 15vw
+        width: 9vw
+        max-width: 400px
         flex-shrink: 0
         flex-grow: 2
-        margin-right: 2em
+        margin-right: 3em
+        +m-digDesktop()
+            min-width: 14vw
+            width: 8vw
         +m-desktop()
-            min-width: 20vw
-            width: min-content
+            width: 20vw
         +m-table()
             min-width: 30vw
             margin-right: 30px
@@ -50,6 +56,5 @@
             line-height: 1.5em
             margin-bottom: 1em
     &__accent-strong
-        font-size: 1.4em
-        +m-desktop()
-            font-size: 1.2em
+        font-size: 1.2em
+        +l-smDesktop(font-size, 1.2em)

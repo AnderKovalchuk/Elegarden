@@ -1,0 +1,60 @@
+.grid
+    &__iner
+        display: grid
+        grid-template-columns: 1fr 1fr
+        gap: 2em
+        +m-phone()
+            grid-template-columns: 1fr
+
+    &__item
+        position: relative
+        height: 15vw
+        padding: 3em
+        font-size: 1rem
+        background-color: $light-text-color
+        +m-digDesktop()
+            height: 300px
+        +m-table()
+            height: 200px
+            max-height: 300px
+            padding: 2em
+        a
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            height: 100%
+            text-decoration: none
+        .angle-link
+            z-index: 5
+        &:hover
+            .angle-link
+                opacity: 1
+        &--dark
+            .grid__title
+                color: $main-color
+    &__title
+        position: relative
+        z-index: 5
+        font-size: 1.5em
+        font-weight: 300
+        color: $light-text-color
+        text-transform: uppercase
+    &__img
+        position: absolute
+        left: 0
+        top: 0
+        right: 0
+        bottom: 0
+        font-size: 0
+        &::before
+            content: ''
+            position: absolute
+            width: 100%
+            height: 100%
+            background-color: #000000
+            opacity: .3
+        img
+            height: 100%
+            width: 100%
+            object-fit: cover
+    

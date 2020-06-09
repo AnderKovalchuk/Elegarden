@@ -1,4 +1,6 @@
 .home-header
+    +l-phone(padding, 0)
+
     &__iner
         position: relative
         display: flex
@@ -6,23 +8,32 @@
         align-items: center
         justify-content: center
         align-self: stretch
+    &__add-text, &__left-text
+        bottom: 2em
+        +l-phone(bottom, 1em)
     &__add-text
         position: absolute
-        left: 5vw
-        bottom: 10px
+        left: 3em
+        height: 55px
         max-width: 330px
+        display: flex
+        align-items: center
         font-weight: bold
         +m-phone()
             font-size: 0.9em
     &__left-text
         position: absolute
         right: 0
-        bottom: -1em
         transform-origin: right top
         transform: rotate(90deg)
         font-weight: 300
         opacity: .5
+        font-size: 1em
         +m-table()
             font-size: 0.9em
         +m-phone()
             display: none
+
+    .section__nav-iner
+        .section__nav-number
+            +l-phone(display, none)

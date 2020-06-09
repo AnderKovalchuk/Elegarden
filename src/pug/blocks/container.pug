@@ -1,0 +1,14 @@
+mixin container(size)
+    - var containerClass = 'container'
+    case size
+        when 'b' 
+            - containerClass += ' container--nav-padding'
+        when 'l'
+            - containerClass += ' container--nav-wrap-padding'
+        when 'm'
+            - containerClass += ' container--x2-padding'
+
+    - containerClass += ' ' + attributes.class
+
+    div(class= containerClass)
+        block

@@ -44,7 +44,8 @@ class PageScroll{
 
         this.pageSections.forEach(sec => {
             let navIner = sec.html.querySelector('.section__nav-iner');
-            navIner.classList.toggle('section__nav-iner--hidden');
+            if(navIner)
+                navIner.classList.toggle('section__nav-iner--hidden');
         })
     }
 
@@ -86,8 +87,6 @@ class PageScroll{
 
         let scrollNav = document.querySelector('.page-scroll__nav');
         this.scrollNavItems.forEach(item => scrollNav.appendChild(item));
-
-
     }
     /* Генерирование и вывод элемента навигации между секциями */
     generateScrollNavItem(secIndex){
@@ -95,8 +94,10 @@ class PageScroll{
         let a = document.createElement('a');
         a.setAttribute('href', `#sec-${ secIndex }`);
         a.setAttribute('data-section-index', secIndex);
-        a.addEventListener('click', () =>{
+        a.addEventListener('click', (e) =>{
+            e.preventDefault();
             this.changeActiveSection(secIndex);
+            this.moveToActiveSection();
             this.blockScroll();
         })
         li.appendChild(a)

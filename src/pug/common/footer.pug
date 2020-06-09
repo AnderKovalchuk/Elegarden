@@ -1,11 +1,14 @@
 include ../elements/section-nav-iner
-
+include ../blocks/container
+include ../blocks/title
+//-   .container.content.content--no-right
 footer.footer.section
-    .footer__iner.container.content.content--no-right
+    .container.container--nav-padding.footer__iner
         .footer__phone
             p +7 (925) 755-78-91
         .footer__title
-            h3.title.title--like-h1 ELEGARDEN
+            +title('h1', 'ELEGARDEN', true)
+            //- h3.title.title--like-h1 ELEGARDEN
         .footer__info--iner
             .footer__copyright
                 p © 2005...2020

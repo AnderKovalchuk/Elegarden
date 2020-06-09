@@ -1,7 +1,11 @@
 extends ../layouts/dark-menu
 
 include ../includes/section
-include ../elements/project-item
+include ../elements/grid-item
+
+include ../blocks/sec
+include ../blocks/container
+include ../blocks/title
 
 block variables
     - var title = 'Список услуг';
@@ -10,16 +14,13 @@ block variables
 
 
 block main-content
-    +section('01', '+')
-        .container.container--header.content.content--no-right
-            .content__iner
-                .content__title.title__iner
-                    h2.title.title--like-h1 НАШИ УСЛУГИ
-
-                .projects__iner
-                    +project-item('ЛАНДШАФТНОЕ ПРОЕКТИРОВАНИЕ', 'img/serv_img_1.jpg', '/service.html')
-                    +project-item('ЛАНДШАФТНОЕ СТРОИТЕЛЬСТВО')
-                    +project-item('Ландшафтное озеленение')
-                    +project-item('ландшафтный консалтинг')
-                    +project-item('ОЗЕЛЕНЕНИЕ ИНТЕРЬЕРОВ')
-                    +project-item('ОЗЕЛЕНЕНИЕ КРЫШ')
+    +section('', '01', 'light').section--header
+        +container('b')
+            +title('h2', 'Наши проекты').projects__title
+            .grid__iner
+                +grid-item('ЛАНДШАФТНОЕ ПРОЕКТИРОВАНИЕ', 'img/serv_img_1.jpg', '/service.html')
+                +grid-item('ЛАНДШАФТНОЕ СТРОИТЕЛЬСТВО')
+                +grid-item('Ландшафтное озеленение')
+                +grid-item('ландшафтный консалтинг')
+                +grid-item('ОЗЕЛЕНЕНИЕ ИНТЕРЬЕРОВ')
+                +grid-item('ОЗЕЛЕНЕНИЕ КРЫШ')

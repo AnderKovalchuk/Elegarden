@@ -1,16 +1,17 @@
 include ../elements/menu-button
 include page-scroll
 include header-top
-//- .header__menu-button--active-page-scroll
+
 mixin header(isDark= false)
     if isDark
         header.header.header--dark
             .container
                 +header-top()
             include main-menu
+        +page-scroll()
     else
         header.header
             .container
                 +header-top()
-                include main-menu
-            +page-scroll()
+            include main-menu
+        +page-scroll()

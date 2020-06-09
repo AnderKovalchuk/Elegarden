@@ -43,6 +43,8 @@
             margin-bottom: 0.5em !important
 
     &__form
+        display: flex
+        flex-direction: column
         input, textarea
             padding: 5px
             font-weight: 300
@@ -50,3 +52,8 @@
             border-bottom: 1px solid $main-color
             outline: none
             resize: none
+        .comments__row
+            margin-bottom: 0
+        input[type="submit"]
+            align-self: flex-end
+            margin: 0

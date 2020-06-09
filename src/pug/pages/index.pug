@@ -1,11 +1,15 @@
 extends ../layouts/main
 
-include ../includes/section
-include ../elements/angle-line
+//- include ../elements/angle-line
 include ../elements/angle-link
 include ../elements/progress
 include ../elements/angle-nav
 include ../elements/section-nav-iner
+
+include ../blocks/sec
+include ../blocks/container
+include ../blocks/title
+include ../blocks/categories
 
 block variables
     - var title = 'Главная страница';
@@ -13,50 +17,58 @@ block variables
     - var mainContentClass = 'home-page__main';
 
 block main-content
-    +section--full-height('01', '', 'img/home_bg.jpg')
-        .container.home-header__iner
-            .title__iner
-                h2.title.title--like-h1 ELEGARDEN
-                p.title__sub-title Создадим красивый и функциональный сад за 60 дней
+
+    +section('f', '01', 'image', 'img/n_bg_1.jpg', true).home-header
+        +container().home-header__iner
+            +title('h1', 'ELEGARDEN')
+                p Создадим красивый и функциональный сад за 60 дней
             .home-header__add-text
                 p Измените ландшафтный дизайн вокруг себя — подчеркните индивидуальность
             .home-header__left-text
                 p 5 лет на страже красоты и функциональности садов
-    +section--full-height('02')
-        .container.content.content--mob-wrap
-            .content__addition-block.number
-                h5.number__title 5
+    +section('', '02').section--home-section
+        +container('l')
+            .content.content--mob-wrap
+                .content__addition-block.number
+                    h5.number__title 5
+                    .content__iner
+                        p Лет на страже красоты и функциональности садов
                 .content__iner
-                    p Лет на страже красоты и функциональности садов
-            .content__iner
-                p.content__accent-strong
-                    strong  Elegarden выполняет работы по ландшафтному дизайну, ландшафтному проектированию, ландшафтному строительству, благоустройству, озеленению, уходу за садом, обслуживаю сада 
-                p Ландшафтная компания Elegarden создана для того, чтобы идея Вашего сада стала реальностью. Идею сада и озеленения создают заранее, до наступления весеннего тепла - обсуждают детали, формируют пожелания, наблюдать за тем, как мечта о саде обретает чёткие очертания.
-                +angle-link('Узнать больше о нас ', '/who-are-we.html')
-    .section.section--full-height.section--bg-light.section--no-padding
-        .portfolio__iner
+                    p.content__accent-strong
+                        strong  Elegarden выполняет работы по ландшафтному дизайну, ландшафтному проектированию, ландшафтному строительству, благоустройству, озеленению, уходу за садом, обслуживаю сада 
+                    p Ландшафтная компания Elegarden создана для того, чтобы идея Вашего сада стала реальностью. Идею сада и озеленения создают заранее, до наступления весеннего тепла - обсуждают детали, формируют пожелания, наблюдать за тем, как мечта о саде обретает чёткие очертания.
+                    +angle-link('Узнать больше о нас ', '/who-are-we.html')
+    +section('', '03', 'light', '', true)
+        .portfolio__iner.slider
             .portfolio__categories-iner
-                h5 Категории:
-                ul.portfolio__categories
-                    li.active
-                        a(href="#") Частные сады 
-                    li
-                        a(href="#") Общественные
-                    li
-                        a(href="#") Пространства
-            .portfolio__title
-                .title__iner
-                    p.title__sub-title Частный сад
-                    h2.title.title--like-h2 Мурманск 1          
-            .portfolio__description
-                p Площадь: #[span 16 соток]
-                p Город: #[span Москвовская область]
-                +angle-link('Смотреть проект ', '/project.html')
+                +categories()
+            .portfolio__title-iner.slider__title-iner
+                .slider__title.active
+                    p.portfolio__sub-title Частный сад
+                    .portfolio__title 
+                        p.portfolio__title-num 01
+                        h3 Мурманск
+                .slider__title
+                    p.portfolio__sub-title Частный сад
+                    .portfolio__title 
+                        p.portfolio__title-num 02
+                        h3 Вершки
+            .portfolio__description.slider__description-iner
+                .slider__description.active
+                    p Площадь: #[span 16 соток]
+                    p Город: #[span Москвовская область]
+                    +angle-link('Смотреть проект ', '/project.html')
+                .slider__description
+                    p Площадь: #[span 10 соток]
+                    p Город: #[span Москвовская область]
+                    +angle-link('Смотреть проект ', '/project.html')
 
             .portfolio__nav-iner
-                +progress('01', '06')
-                +angle-nav('01', '06')
-            .portfolio__image
-                figure
-                    img(src="img/portfolio_img_1.jpg" alt="")
-        +section-nav-iner('03')
+                +progress('00', '00').slider__progress
+                +angle-nav('00', '00').slider__nav
+            .portfolio__image.slider__items-iner
+                .slider__items
+                    figure
+                        img(src="img/portfolio_img_1.jpg" alt="")
+                    figure
+                        img(src="img/home_bg.jpg" alt="")
