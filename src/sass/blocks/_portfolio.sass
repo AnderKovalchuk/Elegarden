@@ -25,13 +25,14 @@
             grid-template-areas: 'categories categories' 'title image' 'description image' 'nav image'
             gap: 0 1em
             height: calc( 100vh - 3em )
+            max-height: 500px
             margin-bottom: 90px
         +m-phone()
             height: auto
             grid-template-columns: 1fr
             grid-template-rows: auto
             grid-template-areas: 'categories' 'title' 'image' 'description' 'nav'
-            gup: 0
+            gap: 0
             margin: 3em 0 6em 0
     &__categories-iner
         grid-area: categories
@@ -52,7 +53,7 @@
         +l-phone(margin, 1.5em 0 1.5em 10%)
     &__title
         position: relative
-        word-break: break-all
+        //word-break: break-all
         h3 
             font-weight: 300
             font-size: 4.5em
