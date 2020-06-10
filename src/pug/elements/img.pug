@@ -1,3 +1,18 @@
-mixin img(imgSrc)
-    figure.img--with-fill(class!= attributes.class)
+mixin img(imgSrc, type= 'radial')
+    - var imageClass = 'img '
+
+    case type
+        when 'radial'
+            - imageClass += 'img--radial-fill'
+        when 'plain' 
+            - imageClass += 'img--plain-color'
+        when 'light'
+            - imageClass += 'img--plain-color-light'
+        when 'dark'
+            - imageClass += 'img--plain-color-dark'
+
+    if(attributes.class)
+        - imageClass += ' ' + attributes.class
+
+    figure(class= imageClass)
         img(src= imgSrc alt="")
