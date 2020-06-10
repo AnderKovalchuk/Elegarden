@@ -6,6 +6,27 @@
         +m-phone()
             grid-template-columns: 1fr
 
+    &__img
+        position: absolute
+        left: 0
+        top: 0
+        right: 0
+        bottom: 0
+        font-size: 0
+        &::before
+            content: ''
+            position: absolute
+            width: 100%
+            height: 100%
+            background-color: #000000
+            background-image: radial-gradient(circle at center, #353434, #000000)
+            opacity: .3
+            transition: all 0.5s ease-out
+        img
+            height: 100%
+            width: 100%
+            object-fit: cover
+
     &__item
         position: relative
         height: 15vw
@@ -29,6 +50,9 @@
         &:hover
             .angle-link
                 opacity: 1
+            .grid__img::before
+                opacity: 0.4
+
         &--dark
             .grid__title
                 color: $main-color
@@ -39,22 +63,3 @@
         font-weight: 300
         color: $light-text-color
         text-transform: uppercase
-    &__img
-        position: absolute
-        left: 0
-        top: 0
-        right: 0
-        bottom: 0
-        font-size: 0
-        &::before
-            content: ''
-            position: absolute
-            width: 100%
-            height: 100%
-            background-color: #000000
-            opacity: .3
-        img
-            height: 100%
-            width: 100%
-            object-fit: cover
-    
