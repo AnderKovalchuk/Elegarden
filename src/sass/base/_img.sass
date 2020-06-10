@@ -1,0 +1,15 @@
+.img
+    &--with-fill
+        position: relative
+        img
+            object-fit: cover
+            width: 100%
+            height: 100%
+        &::before
+            content: ''
+            position: absolute
+            width: 100%
+            height: 100%
+            background-color: #000000
+            background-image: radial-gradient(circle at center, #353434, #000000)
+            opacity: .6

@@ -3,7 +3,7 @@
 	<head>
         <meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="<?php echo get_template_directory_uri() ?>/css/main.css?v6">
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri() ?>css/main.css?v6">
 		<link rel="apple-touch-icon" sizes="76x76" href="<?php echo get_template_directory_uri() ?>/apple-touch-icon.png">
 		<link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_template_directory_uri() ?>/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_template_directory_uri() ?>/favicon-16x16.png">
@@ -15,7 +15,7 @@
         <?php wp_head(); ?>
 	</head>
 	<body class="blog-page">
-		<header class="header header--dark">
+		<header class="header">
 			<div class="container">
 				<div class="header__top">
 					<div class="header__menu-button"><a class="menu-button menu-button__iner menu-button--light" href="#">
@@ -60,8 +60,8 @@
 						<div class="header__contact">
 							<p>+7 (922) 246 66 55</p>
 						</div>
-					</div>
-					<?php
+                    </div>
+                    <?php
                         wp_nav_menu( [
                             'theme_location'  => 'eleg-main-menu',
                             'container'       => false, 
@@ -85,8 +85,8 @@
 					</div>
 				</div>
 			</div>
-		</header>
-		<div class="page-scroll page-scroll__iner page-scroll--dark">
+        </header>
+        <div class="page-scroll page-scroll__iner page-scroll--dark">
 			<ul class="page-scroll__nav"></ul>
 			<div class="page-scroll__screen-jump"><span class="page-scroll__screen-number">01</span><i class="angle-line angle-line--bottom"></i>
 			</div>
