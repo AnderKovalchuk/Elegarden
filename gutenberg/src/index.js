@@ -381,7 +381,6 @@ registerBlockType( 'elegarden-block/container-bloks-title', {
 
     save: ( props ) => {
         let containerClass = 'container ' + props.attributes.size;
-        console.log(props);
 
         return(
             <div className= { containerClass }>
@@ -421,61 +420,40 @@ registerBlockType( 'elegarden-block/container-bloks-chronology', {
             type: 'string',
             default: 'Этапы работы',
         },
-        titlePosition: {
+        type: {
             type: 'string',
-            default: 'top',
-        },
-        size: {
-            type: 'string',
-            default: 'container--nav-padding',
+            default: 'light',
         },
     },
     edit: ( props ) => {
         const {
             attributes: {
-                size,
+                type,
                 title,
-                titlePosition,
             },
         } = props;
 
         const onChangeTitle = ( newTitle ) => {
             props.setAttributes( { title: newTitle } );
         };
-        const onChangeTitlePosition = ( newPosition ) => {
-            props.setAttributes( { titlePosition: newPosition } );
-        };
-        const onChangeSize = ( newSize ) => {
-            props.setAttributes( { size: newSize } );
+        const onChangeTitleType = ( newType ) => {
+            props.setAttributes( { type: newType } );
         };
         
         return(
             <section style={ blockStyle }>
                 {
                     <InspectorControls>
-                        <PanelBody title="Настройки размера" initialOpen={ true }>
+                        <PanelBody title="Настройки внешнего вида" initialOpen={ true }>
                             <PanelRow>
                                 <SelectControl
-                                    label="Размер"
-                                    value={ size }
+                                    label="Цвет"
+                                    value={ type }
                                     options={ [
-                                        { label: 'Во всю шырину', value: 'container' },
-                                        { label: 'Отступ слева', value: 'container--nav-padding' },
-                                        { label: 'Отступ слева и справа', value: 'container--nav-wrap-padding' },
-                                        { label: 'Двойной отступ', value: 'container--x2-padding' },
+                                        { label: 'Белый', value: 'white' },
+                                        { label: 'Серый', value: 'light' },
                                     ] }
-                                    onChange={ onChangeSize }
-                                />
-                            </PanelRow>
-                            <PanelRow>
-                                <SelectControl
-                                    label="Позиция заголовка"
-                                    value={ titlePosition }
-                                    options={ [
-                                        { label: 'Слева', value: 'left' },
-                                        { label: 'Сверху', value: 'top' },
-                                    ] }
-                                    onChange={ onChangeTitlePosition }
+                                    onChange={ onChangeTitleType }
                                 />
                             </PanelRow>
                         </PanelBody>
@@ -501,10 +479,12 @@ registerBlockType( 'elegarden-block/container-bloks-chronology', {
     },
 
     save: ( props ) => {
+        let sectionClass = props.attributes.type == 'light' ? 'section section--bg-light' : 'section';
+        let chronologyClass = props.attributes.type == 'light' ? 'content chronology' : 'content chronology chronology--light'
         return(
-            <section className="section section--bg-light">
+            <section className= { sectionClass }>
                 <div className="container container--nav-padding">
-                    <div className="content chronology">
+                    <div className= { chronologyClass }>
                         <div className="content__iner">
                             <div className="title title__iner title__iner--center">
                                 <h2 className="title--like-h3">
@@ -576,5 +556,103 @@ registerBlockType( 'elegarden-block/container-bloks-chronology-item', {
                 </div>
             </div>
         );
+    }
+} );
+
+registerBlockType( 'elegarden-block/bloks-title', {
+    title: 'Заголовок - Elegarden',
+    description: 'Горизонтальный блок для размещения контента на странице',
+    icon: 'excerpt-view',
+    category: 'elegarden',
+    attributes: {
+        title: {
+            type: 'string',
+            default: 'Заголовок',
+        },
+        tag: {
+            type: 'string',
+            default: 'h2'
+        }, 
+        size: {
+            type: 'string',
+            default: 'title',
+        },
+    },
+    edit: ( props ) => {
+        const {
+            attributes: {
+                size,
+                title,
+                tag,
+            },
+        } = props;
+
+        const onChangeTitle = ( newTitle ) => {
+            props.setAttributes( { title: newTitle } );
+        };
+        const onChangeTag = ( newTag ) => {
+            props.setAttributes( { tag: newTag } );
+        };
+        const onChangeSize = ( newSize ) => {
+            props.setAttributes( { size: newSize } );
+        };
+        
+        return(
+            <section style={ blockStyle }>
+                {
+                    <InspectorControls>
+                        <PanelBody title="Настройки размера" initialOpen={ true }>
+                            <PanelRow>
+                                <SelectControl
+                                    label="Оформление"
+                                    value={ size }
+                                    options={ [
+                                        { label: 'Огромный', value: 'title--like-h1' },
+                                        { label: 'Большой', value: 'title--like-h3' },
+                                        { label: 'Стандартный', value: 'title' },
+                                    ] }
+                                    onChange={ onChangeSize }
+                                />
+                            </PanelRow>
+                            <PanelRow>
+                                <SelectControl
+                                    label="Тег для заголовка"
+                                    value={ tag }
+                                    options={ [
+                                        { label: 'H1', value: 'h1' },
+                                        { label: 'H2', value: 'h2' },
+                                        { label: 'H3', value: 'h3' },
+                                    ] }
+                                    onChange={ onChangeTag }
+                                />
+                            </PanelRow>
+                        </PanelBody>
+                    </InspectorControls>
+                }
+
+                <TextControl
+                    name= "title"
+                    label= "Заголовок"
+                    value= { title }
+                    onChange={ onChangeTitle }
+                />
+            </section>
+        );
+    },
+
+    save: ( props ) => {
+        let titleClass = props.attributes.size;
+        if(titleClass == 'title')
+            titleClass = '';
+
+        return(
+            <div className="title">
+                { props.attributes.tag == 'h1' &&
+                    <h1 className= {titleClass}>
+                        { props.attributes.title }
+                    </h1>
+                }
+            </div>
+        )
     }
 } );
