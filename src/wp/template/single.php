@@ -16,9 +16,9 @@
                                     <p><?php the_excerpt(); ?></p>
                                 </div>
                             <?php endif; ?>
-                            <h2 class="title--like-h3">
+                            <h1 class="title--like-h3">
                                 <?php the_title(); ?>
-                            </h2>
+                            </h1>
                         </div>
                         <div class="article__info">
                             <p> <?php the_date(); ?> </p>

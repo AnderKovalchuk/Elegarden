@@ -5,7 +5,7 @@
         <div class="container">
             <div class="projects__iner">
                 <div class="title title__iner projects__title">
-                    <h2 class="title--like-h2">Наши проекты</h2>
+                    <h1 class="title--like-h2">Наши проекты</h1>
                 </div>
                 <div class="projects__navigation">
                     <?php get_template_part( 'template-parts/categories' ); ?>

@@ -5,7 +5,7 @@
         <div class="container">
             <div class="projects__iner">
                 <div class="title title__iner projects__title">
-                    <h2 class="title--like-h3"><?php echo get_the_title(); ?></h2>
+                    <h1 class="title--like-h3"><?php echo get_the_title(); ?></h1>
                 </div>
                 
             </div>

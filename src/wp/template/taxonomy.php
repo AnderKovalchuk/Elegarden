@@ -4,7 +4,7 @@
         <div class="container">
             <div class="projects__iner">
                 <div class="title title__iner projects__title">
-                    <h2 class="title--like-h3"><?php single_term_title(); ?></h2>
+                    <h1 class="title--like-h3"><?php single_term_title(); ?></h1>
                 </div>
                 <div class="projects__navigation">
                     <?php get_template_part( 'template-parts/categories' ); ?>

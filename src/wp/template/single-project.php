@@ -8,12 +8,12 @@
     endif; ?>
 
     <section class="section section--full-height section--bg-image">
-        <figure class="img--with-fill section__bg-image">
-            <img src="<?php echo $headerImage; ?>" alt="<?php the_title(); ?>" />
+        <figure class="img img--radial-fill section__bg-image">
+            <img src="<?php echo $headerImage; ?>" alt="<?php the_title_attribute(); ?>" />
         </figure>
         <div class="container project-header__iner">
             <div class="title title__iner undefined">
-                <h2 class="title--like-h1"><?php the_title(); ?></h2>
+                <h2 class="title--like-h3"><?php echo $post->post_title; ?></h2>
                 <div class="title__sub-title">
                     <p><?php the_excerpt(); ?></p>
                 </div>

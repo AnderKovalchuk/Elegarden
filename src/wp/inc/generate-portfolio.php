@@ -18,18 +18,18 @@ function eleg_generate_portfolio(){
             </div>
             <div class="portfolio__title-iner slider__title-iner">
                 <?php for($index = 0; $index < count($posts); $index++) : ?>
-                <div class="slider__title <?php if($index == 0) echo 'active'; ?> " >
-                    <p class="portfolio__sub-title">
-                        <?php echo implode(wp_get_post_terms($posts[$index]->ID, 'projects', array('fields' => 'names'))); ?>
-                    </p>
-                    <div class="portfolio__title"> 
-                        <p class="portfolio__title-num"><?php echo '0' . ($index + 1); ?></p>
-                        <h3> <?php echo $posts[$index]->post_title; ?> </h3>
+                    <div class="slider__title <?php if($index == 0) echo 'active'; ?> " >
+                        <p class="portfolio__sub-title">
+                            <?php echo implode(wp_get_post_terms($posts[$index]->ID, 'projects', array('fields' => 'names'))); ?>
+                        </p>
+                        <div class="portfolio__title"> 
+                            <p class="portfolio__title-num"><?php echo '0' . ($index + 1); ?></p>
+                            <h3> <?php echo $posts[$index]->post_title; ?> </h3>
+                        </div>
                     </div>
-                </div>
                 <?php endfor; ?> 
             </div>
-            <div class="portfolio__description slider__description-iner">
+            <div class="portfolio__description slider__description-iner"> <div>
                 <?php for($index = 0; $index < count($posts); $index++) : ?>
                     <div class="slider__description <?php if($index == 0) echo 'active'; ?> ">
                         <?php if( $el_size = implode( get_post_meta($posts[$index]->ID, 'Площадь:')) ) : ?>
@@ -46,7 +46,7 @@ function eleg_generate_portfolio(){
                         </div>
                     </div>
                 <?php endfor; ?> 
-            </div>
+            </div></div>
             <div class="portfolio__nav-iner">
                 <div class="progress slider__progress">
                     <p class="progress__num">00</p>

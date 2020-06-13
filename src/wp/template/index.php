@@ -13,7 +13,7 @@
             <div class="content content--always--full">
                 <div class="content__iner">
                     <div class="title title__iner content__title">
-                        <h2 class="title--like-h2">НАШ БЛОГ</h2>
+                        <h1 class="title--like-h2">НАШ БЛОГ</h1>
                     </div>
                     <div class="blog__iner">
                         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
