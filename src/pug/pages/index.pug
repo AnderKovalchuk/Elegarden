@@ -20,8 +20,12 @@ block main-content
 
     +section('f', '01', 'image', 'img/n_bg_1.jpg', true).home-header
         +container().home-header__iner
-            +title('h1', 'ELEGARDEN')
-                p Создадим красивый и функциональный сад за 60 дней
+            .title.title__iner
+                h1.title--like-h1 ELEGARDEN
+                .title__sub-title
+                    p Создадим красивый и функциональный сад за 60 дней
+            //- +title('h1', 'ELEGARDEN')
+            //-     p Создадим красивый и функциональный сад за 60 дней
             .home-header__add-text
                 p Измените ландшафтный дизайн вокруг себя — подчеркните индивидуальность
             .home-header__left-text
@@ -30,10 +34,12 @@ block main-content
         +container('l')
             .content.content--mob-wrap
                 .content__addition-block.number
-                    h5.number__title 5
+                    h5.number__title 10
                     .content__iner
                         p Лет на страже красоты и функциональности садов
                 .content__iner
+                    .title.title__iner
+                        h1 студия ланшафтного дизайна 
                     p.content__accent-strong
                         strong  Elegarden выполняет работы по ландшафтному дизайну, ландшафтному проектированию, ландшафтному строительству, благоустройству, озеленению, уходу за садом, обслуживаю сада 
                     p Ландшафтная компания Elegarden создана для того, чтобы идея Вашего сада стала реальностью. Идею сада и озеленения создают заранее, до наступления весеннего тепла - обсуждают детали, формируют пожелания, наблюдать за тем, как мечта о саде обретает чёткие очертания.
