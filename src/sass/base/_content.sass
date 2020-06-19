@@ -34,18 +34,21 @@
                 margin-right: 15px
                 
     &__addition-block
-        width: 9vw
+        // width: fit-content
+        // max-width: 20vw
         max-width: 400px
-        flex-shrink: 0
+        flex-shrink: 1
         flex-grow: 2
+        flex-basis: 30vw
         margin-right: 3em
         +m-digDesktop()
-            min-width: 14vw
-            width: 8vw
+            // min-width: 14vw
+            // max-width: 20vw
         +m-desktop()
-            width: 20vw
+            // max-width: 30vw
+            flex-basis: 30vw
         +m-table()
-            min-width: 30vw
+            flex-basis: 35vw
             margin-right: 30px
             margin-bottom: 30px
 

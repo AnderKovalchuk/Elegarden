@@ -11,7 +11,7 @@
             max-width: 100%
             +m-phone()
                 margin: 2em 0
-        p, h2, h3
+        p, h2, h3, ul, ol
             width: 50%
             margin-left: 10%
             +m-desktop()
@@ -23,6 +23,10 @@
                 margin-left: 0
         h2, h3
             margin-bottom: 1em
+        ul, ol
+            margin-left: calc( 10% + 1.3em )
+            +m-phone()
+                margin-left: 1em
     &__link
         display: flex
         margin-left: 10%
